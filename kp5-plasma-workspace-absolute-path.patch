@@ -1,0 +1,22 @@
+--- plasma-workspace-5.4.0/ksmserver/KSMServerDBusInterfaceConfig.cmake.in~	2015-08-22 12:45:41.000000000 +0200
++++ plasma-workspace-5.4.0/ksmserver/KSMServerDBusInterfaceConfig.cmake.in	2015-09-06 20:04:32.796555137 +0200
+@@ -1,3 +1,3 @@
+ @PACKAGE_INIT@
+ 
+-set(KSMSERVER_DBUS_INTERFACE "${PACKAGE_PREFIX_DIR}/@DBUS_INTERFACES_INSTALL_DIR@/org.kde.KSMServerInterface.xml")
++set(KSMSERVER_DBUS_INTERFACE "@DBUS_INTERFACES_INSTALL_DIR@/org.kde.KSMServerInterface.xml")
+--- plasma-workspace-5.4.0/ksmserver/screenlocker/ScreenSaverDBusInterfaceConfig.cmake.in~	2015-08-22 12:45:41.000000000 +0200
++++ plasma-workspace-5.4.0/ksmserver/screenlocker/ScreenSaverDBusInterfaceConfig.cmake.in	2015-09-06 20:11:36.875871409 +0200
+@@ -1,3 +1,3 @@
+ @PACKAGE_INIT@
+ 
+-set(SCREENSAVER_DBUS_INTERFACE "${PACKAGE_PREFIX_DIR}/@DBUS_INTERFACES_INSTALL_DIR@/kf5_org.freedesktop.ScreenSaver.xml")
++set(SCREENSAVER_DBUS_INTERFACE "@DBUS_INTERFACES_INSTALL_DIR@/kf5_org.freedesktop.ScreenSaver.xml")
+--- plasma-workspace-5.4.0/krunner/KRunnerAppDBusInterfaceConfig.cmake.in~	2015-08-22 12:45:41.000000000 +0200
++++ plasma-workspace-5.4.0/krunner/KRunnerAppDBusInterfaceConfig.cmake.in	2015-09-06 20:12:39.641057584 +0200
+@@ -1,4 +1,4 @@
+ @PACKAGE_INIT@
+ 
+-set(KRUNNERAPP_INTERFACE "${PACKAGE_PREFIX_DIR}/@DBUS_INTERFACES_INSTALL_DIR@/org.kde.krunner.App.xml")
++set(KRUNNERAPP_INTERFACE "@DBUS_INTERFACES_INSTALL_DIR@/org.kde.krunner.App.xml")
+ 
