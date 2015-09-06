@@ -37,6 +37,7 @@ BuildRequires:	kf5-kpackage-devel
 BuildRequires:	kf5-krunner-devel
 BuildRequires:	kf5-ktextwidgets-devel
 BuildRequires:	kf5-kwallet-devel
+BuildRequires:	kf5-kxmlrpcclient-devel
 BuildRequires:	kf5-networkmanager-qt-devel
 BuildRequires:	kf5-plasma-framework-devel
 BuildRequires:	kf5-plasma-framework-devel
