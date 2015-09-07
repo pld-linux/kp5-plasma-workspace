@@ -10,11 +10,12 @@
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
 Version:	5.4.0
-Release:	3
+Release:	4
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
 # Source0-md5:	0bb91a876188f98791358017c85ccec8
+Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
 URL:		http://www.kde.org/
@@ -84,6 +85,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} -C build/ install \
         DESTDIR=$RPM_BUILD_ROOT
+
+install -m455 -p -D %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/kde
 
 %find_lang %{kpname} --all-name
 
@@ -272,6 +275,7 @@ rm -rf $RPM_BUILD_ROOT
 /etc/xdg/plasmoids.knsrc
 /etc/xdg/taskmanagerrulesrc
 /etc/xdg/wallpaper.knsrc
+%config(noreplace) %verify(not md5 mtime size) /etc/pam.d/kde
 
 %files devel
 %defattr(644,root,root,755)
