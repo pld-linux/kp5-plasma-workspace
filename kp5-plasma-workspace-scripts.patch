@@ -1,0 +1,11 @@
+--- plasma-workspace-5.4.0/startkde/startkde.cmake~	2015-08-22 12:45:41.000000000 +0200
++++ plasma-workspace-5.4.0/startkde/startkde.cmake	2015-09-07 11:35:11.917890454 +0200
+@@ -29,6 +29,8 @@
+   qdbus=qdbus
+ fi
+ 
++qdbus=/usr/bin/qdbus
++
+ # Check if a KDE session already is running and whether it's possible to connect to X
+ kcheckrunning
+ kcheckrunning_result=$?

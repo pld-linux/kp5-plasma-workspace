@@ -10,12 +10,13 @@
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
 Version:	5.4.0
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
 # Source0-md5:	0bb91a876188f98791358017c85ccec8
 Patch0:		kp5-plasma-workspace-absolute-path.patch
+Patch1:		kp5-plasma-workspace-scripts.patch
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
@@ -39,7 +40,6 @@ BuildRequires:	kf5-ktextwidgets-devel
 BuildRequires:	kf5-kwallet-devel
 BuildRequires:	kf5-kxmlrpcclient-devel
 BuildRequires:	kf5-networkmanager-qt-devel
-BuildRequires:	kf5-plasma-framework-devel
 BuildRequires:	kf5-plasma-framework-devel
 BuildRequires:	kp5-libkscreen-devel
 BuildRequires:	kp5-libksysguard-devel
@@ -69,6 +69,7 @@ Pliki nagłówkowe dla programistów używających %{kpname}.
 %prep
 %setup -q -n %{kpname}-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 install -d build
