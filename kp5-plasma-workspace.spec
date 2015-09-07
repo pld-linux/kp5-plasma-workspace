@@ -10,7 +10,7 @@
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
 Version:	5.4.0
-Release:	2
+Release:	3
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -217,10 +217,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/qml/org/kde/plasma/private/shell/qmldir
 %dir %{_libdir}/qt5/qml/org/kde/plasma/wallpapers
 %dir %{_libdir}/qt5/qml/org/kde/plasma/wallpapers/image
+%{_libdir}/qt5/qml/org/kde/plasma/wallpapers/image/qmldir
 %attr(755,root,root) %{_libdir}/qt5/qml/org/kde/plasma/wallpapers/image/libplasma_wallpaper_imageplugin.so
 %{_libdir}/qt5/qml/org/kde/plasma/workspace
 %dir %{_libdir}/qt5/qml/org/kde/private
 %dir %{_libdir}/qt5/qml/org/kde/private/systemtray
+%{_libdir}/qt5/qml/org/kde/private/systemtray/qmldir
 %attr(755,root,root) %{_libdir}/qt5/qml/org/kde/private/systemtray/libsystemtrayplugin.so
 %{_desktopdir}/org.kde.klipper.desktop
 %{_desktopdir}/plasma-windowed.desktop
