@@ -86,7 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C build/ install \
         DESTDIR=$RPM_BUILD_ROOT
 
-install -m455 -p -D %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/kde
+install -p -D %{SOURCE1} $RPM_BUILD_ROOT/etc/pam.d/kde
 
 %find_lang %{kpname} --all-name
 
