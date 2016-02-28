@@ -3,18 +3,18 @@
 #
 # * KF5Prison (required version >= 1.2.0) , Prison library , <http://projects.kde.org/prison>
 #   Needed to create mobile barcodes from clipboard data (no stable release currently)
-%define		kdeplasmaver	5.4.0
+%define		kdeplasmaver	5.5.4
 %define		qtver		5.3.2
 %define		kpname		plasma-workspace
 
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
-Version:	5.4.0
-Release:	4
+Version:	5.5.4
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	0bb91a876188f98791358017c85ccec8
+# Source0-md5:	e6450622646f5361a71830912320fd64
 Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
@@ -37,13 +37,16 @@ BuildRequires:	kf5-knewstuff-devel
 BuildRequires:	kf5-knotifyconfig-devel
 BuildRequires:	kf5-kpackage-devel
 BuildRequires:	kf5-krunner-devel
+BuildRequires:	kf5-ktexteditor-devel
 BuildRequires:	kf5-ktextwidgets-devel
 BuildRequires:	kf5-kwallet-devel
 BuildRequires:	kf5-kxmlrpcclient-devel
 BuildRequires:	kf5-networkmanager-qt-devel
 BuildRequires:	kf5-plasma-framework-devel
+BuildRequires:	kp5-kwin-devel
 BuildRequires:	kp5-libkscreen-devel
 BuildRequires:	kp5-libksysguard-devel
+BuildRequires:	libdbusmenu-qt5-devel
 BuildRequires:	libqalculate-devel
 BuildRequires:	pam-devel
 BuildRequires:	rpmbuild(macros) >= 1.164
@@ -69,7 +72,7 @@ Pliki nagłówkowe dla programistów używających %{kpname}.
 
 %prep
 %setup -q -n %{kpname}-%{version}
-%patch0 -p1
+#%%patch0 -p1
 %patch1 -p1
 
 %build
@@ -113,10 +116,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/startkde
 %attr(755,root,root) %{_bindir}/startplasmacompositor
 %attr(755,root,root) %{_bindir}/systemmonitor
+%attr(755,root,root) %{_bindir}/xembedsniproxy
 %attr(755,root,root) %{_libdir}/startplasma
 %attr(755,root,root) %{_libdir}/drkonqi
-%attr(755,root,root) %{_libdir}/kcheckpass
-%attr(755,root,root) %{_libdir}/kscreenlocker_greet
+#%%attr(755,root,root) %{_libdir}/kcheckpass
+#%%attr(755,root,root) %{_libdir}/kscreenlocker_greet
 %attr(755,root,root) %{_libdir}/ksyncdbusenv
 %attr(755,root,root) %{_libdir}/libkdeinit5_kcminit.so
 %attr(755,root,root) %{_libdir}/libkdeinit5_kcminit_startup.so
@@ -132,15 +136,24 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libweather_ion.so.7
 %attr(755,root,root) %{_libdir}/libweather_ion.so.*.*.*
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_krunner_kill.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kded_desktopnotifier.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kded_freespacenotifier.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kded_ksysguard.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kded_ktimezoned.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kded_remotedirnotify.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kded_solidautoeject.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kded_soliduiserver.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kded_statusnotifierwatcher.so
+#%%attr(755,root,root) %{_libdir}/qt5/plugins/kded_desktopnotifier.so
+#%%attr(755,root,root) %{_libdir}/qt5/plugins/kded_freespacenotifier.so
+#%%attr(755,root,root) %{_libdir}/qt5/plugins/kded_ksysguard.so
+#%%attr(755,root,root) %{_libdir}/qt5/plugins/kded_ktimezoned.so
+#%%attr(755,root,root) %{_libdir}/qt5/plugins/kded_remotedirnotify.so
+#%%attr(755,root,root) %{_libdir}/qt5/plugins/kded_solidautoeject.so
+#%%attr(755,root,root) %{_libdir}/qt5/plugins/kded_soliduiserver.so
+#%%attr(755,root,root) %{_libdir}/qt5/plugins/kded_statusnotifierwatcher.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kio/desktop.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kded/appmenu.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kded/desktopnotifier.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kded/freespacenotifier.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kded/ksysguard.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kded/ktimezoned.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kded/remotedirnotify.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kded/solidautoeject.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kded/soliduiserver.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kded/statusnotifierwatcher.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kio_applications.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kio_remote.so
 %dir %{_libdir}/qt5/plugins/kpackage
@@ -194,6 +207,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/plasma/dataengine/plasma_engine_systemmonitor.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/plasma/dataengine/plasma_engine_tasks.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/plasma/dataengine/plasma_engine_time.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/plasma/dataengine/plasma_engine_statusnotifieritem.so
 %dir %{_libdir}/qt5/plugins/plasma/packagestructure
 %attr(755,root,root) %{_libdir}/qt5/plugins/plasma/packagestructure/plasma_packagestructure_share.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/plasma_applet_notifications.so
@@ -203,7 +217,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/plasma_containmentactions_switchactivity.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/plasma_containmentactions_switchdesktop.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/plasma_containmentactions_switchwindow.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/screenlocker_kcm.so
+#%%attr(755,root,root) %{_libdir}/qt5/plugins/screenlocker_kcm.so
 %dir %{_libdir}/qt5/qml/org/kde/plasma
 %dir %{_libdir}/qt5/qml/org/kde/plasma/private
 %dir %{_libdir}/qt5/qml/org/kde/plasma/private/digitalclock
@@ -227,35 +241,40 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/qt5/qml/org/kde/private/systemtray
 %{_libdir}/qt5/qml/org/kde/private/systemtray/qmldir
 %attr(755,root,root) %{_libdir}/qt5/qml/org/kde/private/systemtray/libsystemtrayplugin.so
+%dir %{_libdir}/qt5/qml/org/kde/plasma/private/sessions
+%attr(755,root,root) %{_libdir}/qt5/qml/org/kde/plasma/private/sessions/libsessionsprivateplugin.so
+%{_libdir}/qt5/qml/org/kde/plasma/private/sessions/qmldir
 %{_desktopdir}/org.kde.klipper.desktop
 %{_desktopdir}/plasma-windowed.desktop
 %{_datadir}/config.kcfg/freespacenotifier.kcfg
-%{_datadir}/dbus-1/interfaces/kf5_org.freedesktop.ScreenSaver.xml
+#%%{_datadir}/dbus-1/interfaces/kf5_org.freedesktop.ScreenSaver.xml
 %{_datadir}/dbus-1/interfaces/org.kde.KSMServerInterface.xml
 %{_datadir}/dbus-1/interfaces/org.kde.KSplash.xml
 %{_datadir}/dbus-1/interfaces/org.kde.PlasmaShell.xml
 %{_datadir}/dbus-1/interfaces/org.kde.krunner.App.xml
+%{_datadir}/dbus-1/interfaces/com.canonical.AppMenu.Registrar.xml
+%{_datadir}/dbus-1/interfaces/org.kde.kappmenu.xml
 %{_datadir}/dbus-1/services/kf5_org.kde.kuiserver.service
 %{_datadir}/dbus-1/services/org.kde.krunner.service
 %{_datadir}/desktop-directories/kf5-*.directory
 %{_datadir}/drkonqi
-%dir %{_datadir}/kconf_update
-%{_datadir}/kconf_update/kscreenlocker.upd
-%{_datadir}/kconf_update/ksreenlocker_5_3_separate_autologin.pl
+#%%dir %{_datadir}/kconf_update
+#%%{_datadir}/kconf_update/kscreenlocker.upd
+#%%{_datadir}/kconf_update/ksreenlocker_5_3_separate_autologin.pl
 %{_datadir}/kio_desktop
 %{_datadir}/knotifications5/freespacenotifier.notifyrc
-%{_datadir}/knotifications5/ksmserver.notifyrc
+#%%{_datadir}/knotifications5/ksmserver.notifyrc
 %{_datadir}/knotifications5/phonon.notifyrc
 %{_datadir}/kservices5/applications.protocol
 %{_datadir}/kservices5/desktop.protocol
 %{_datadir}/kservices5/ion-noaa.desktop
-%{_datadir}/kservices5/kded
+#%%{_datadir}/kservices5/kded
 %{_datadir}/kservices5/kuiserver.desktop
 %{_datadir}/kservices5/plasma-*.desktop
 %{_datadir}/kservices5/programs.protocol
 %{_datadir}/kservices5/recentdocuments.desktop
 %{_datadir}/kservices5/remote.protocol
-%{_datadir}/kservices5/screenlocker.desktop
+#%%{_datadir}/kservices5/screenlocker.desktop
 %{_datadir}/kservicetypes5/phononbackend.desktop
 %{_datadir}/kservicetypes5/plasma-geolocationprovider.desktop
 %{_datadir}/kservicetypes5/plasma-layout-template.desktop
@@ -265,6 +284,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kstyle
 %{_datadir}/plasma
 %{_datadir}/sddm
+%{_datadir}/wayland-sessions/plasmawayland.desktop
 %dir %{_datadir}/solid
 %dir %{_datadir}/solid/actions
 %{_datadir}/solid/actions/test-predicate-openinwindow.desktop
@@ -272,6 +292,7 @@ rm -rf $RPM_BUILD_ROOT
 /etc/xdg/autostart/krunner.desktop
 /etc/xdg/autostart/org.kde.klipper.desktop
 /etc/xdg/autostart/plasmashell.desktop
+/etc/xdg/autostart/xembedsniproxy.desktop
 /etc/xdg/plasmoids.knsrc
 /etc/xdg/taskmanagerrulesrc
 /etc/xdg/wallpaper.knsrc
@@ -287,7 +308,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/cmake/KSMServerDBusInterface
 %{_libdir}/cmake/LibKWorkspace
 %{_libdir}/cmake/LibTaskManager
-%{_libdir}/cmake/ScreenSaverDBusInterface
+#%%{_libdir}/cmake/ScreenSaverDBusInterface
 %attr(755,root,root) %{_libdir}/libkworkspace5.so
 %attr(755,root,root) %{_libdir}/libplasma-geolocation-interface.so
 %attr(755,root,root) %{_libdir}/libtaskmanager.so
