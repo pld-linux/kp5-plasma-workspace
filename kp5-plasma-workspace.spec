@@ -10,7 +10,7 @@
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
 Version:	5.11.0
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -19,6 +19,7 @@ Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
 URL:		http://www.kde.org/
+BuildRequires:	AppStream-qt-devel
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	gpsd-devel
@@ -770,6 +771,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/solid/actions/test-predicate-openinwindow.desktop
 %{_datadir}/wayland-sessions/plasmawayland.desktop
 %{_datadir}/xsessions/plasma.desktop
+%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/tests/test.qml
+/etc/xdg/autostart/org.kde.plasmashell.desktop
+%{_libdir}/baloorunner
+%{_libdir}/qt5/plugins/appstreamrunner.so
+%{_desktopdir}/org.kde.plasmashell.desktop
+%{_datadir}/dbus-1/services/org.kde.baloorunner.service
+%{_datadir}/kservices5/appstreamrunner.desktop
 
 %files devel
 %defattr(644,root,root,755)
