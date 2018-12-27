@@ -3,18 +3,18 @@
 #
 # * KF5Prison (required version >= 1.2.0) , Prison library , <http://projects.kde.org/prison>
 #   Needed to create mobile barcodes from clipboard data (no stable release currently)
-%define		kdeplasmaver	5.11.2
-%define		qtver		5.3.2
+%define		kdeplasmaver	5.14.4
+%define		qtver		5.9.0
 %define		kpname		plasma-workspace
 
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
-Version:	5.11.2
+Version:	5.14.4
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	acaa5460f050cbcfc0ccdcfc2cc1906c
+# Source0-md5:	eaeaeaf57be7d45752ec92f0b5beda0b
 Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
@@ -24,6 +24,7 @@ BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	gpsd-devel
 BuildRequires:	kf5-baloo-devel
+BuildRequires:	kf5-extra-cmake-modules >= 5.50
 BuildRequires:	kf5-kcmutils-devel
 BuildRequires:	kf5-kcrash-devel
 BuildRequires:	kf5-kdbusaddons-devel
@@ -44,11 +45,11 @@ BuildRequires:	kf5-kwallet-devel
 BuildRequires:	kf5-kxmlrpcclient-devel
 BuildRequires:	kf5-networkmanager-qt-devel
 BuildRequires:	kf5-plasma-framework-devel
-BuildRequires:	kp5-kwin-devel
-BuildRequires:	kp5-libkscreen-devel
-BuildRequires:	kp5-libksysguard-devel
+BuildRequires:	kp5-kwin-devel >= %{kdeplasmaver}
+BuildRequires:	kp5-libkscreen-devel >= %{kdeplasmaver}
+BuildRequires:	kp5-libksysguard-devel >= %{kdeplasmaver}
 BuildRequires:	libdbusmenu-qt5-devel
-BuildRequires:	libqalculate-devel
+BuildRequires:	libqalculate-devel >= 2.8.2
 BuildRequires:	pam-devel
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	xz
@@ -103,6 +104,43 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{kpname}.lang
 %defattr(644,root,root,755)
 %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/kde
+/etc/xdg/autostart/gmenudbusmenuproxy.desktop
+/etc/xdg/klipper.categories
+/etc/xdg/plasma-workspace.categories
+%attr(755,root,root) %{_bindir}/gmenudbusmenuproxy
+%attr(755,root,root) %ghost %{_libdir}/libcolorcorrect.so.5
+%attr(755,root,root) %{_libdir}/libcolorcorrect.so.5.*.*
+%{_libdir}/qt5/plugins/kf5/kded/colorcorrectlocationupdater.so
+%{_libdir}/qt5/plugins/krunner_appstream.so
+%dir %{_libdir}/qt5/plugins/plasmacalendarplugins
+%dir %{_libdir}/qt5/plugins/plasmacalendarplugins/holidays
+%{_libdir}/qt5/plugins/plasmacalendarplugins/holidays/HolidaysConfig.qml
+%{_libdir}/qt5/plugins/plasmacalendarplugins/holidaysevents.so
+%dir %{_libdir}/qt5/qml/org/kde/colorcorrect
+%{_libdir}/qt5/qml/org/kde/colorcorrect/libcolorcorrectplugin.so
+%{_libdir}/qt5/qml/org/kde/colorcorrect/qmldir
+%dir %{_libdir}/qt5/qml/org/kde/holidayeventshelperplugin
+%{_libdir}/qt5/qml/org/kde/holidayeventshelperplugin/libholidayeventshelperplugin.so
+%{_libdir}/qt5/qml/org/kde/holidayeventshelperplugin/qmldir
+%attr(755,root,root) %{_prefix}/libexec/baloorunner
+%attr(755,root,root) %{_prefix}/libexec/ksmserver-logout-greeter
+%attr(755,root,root) %{_prefix}/libexec/ksyncdbusenv
+%attr(755,root,root) %{_prefix}/libexec/startplasma
+%{_desktopdir}/org.kde.systemmonitor.desktop
+%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/WallpaperFader.qml
+%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/lockscreen/config.qml
+%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/lockscreen/config.xml
+%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/logout/timer.js
+%{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/ui/logic.js
+%{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/contents/ui/DelegateToolButtons.qml
+%{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/contents/ui/ImageItemDelegate.qml
+%{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/contents/ui/TextItemDelegate.qml
+%{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/contents/ui/UrlItemDelegate.qml
+%{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents/ui/data.js
+%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/uiproperties.js
+%{_datadir}/sddm/themes/breeze/components/WallpaperFader.qml
+%dir %{_datadir}/sddm/themes/breeze/faces
+%{_datadir}/sddm/themes/breeze/faces/.face.icon
 /etc/xdg/autostart/klipper.desktop
 /etc/xdg/autostart/krunner.desktop
 #/etc/xdg/autostart/plasmashell.desktop
@@ -130,9 +168,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/xembedsniproxy
 #%%{_libdir}/drkonqi
 %{_libdir}/kconf_update_bin/krunnerplugins
-%{_libdir}/ksmserver-logout-greeter
-%{_libdir}/ksmserver-switchuser-greeter
-%{_libdir}/ksyncdbusenv
+#%%{_libdir}/ksmserver-logout-greeter
+#%%{_libdir}/ksmserver-switchuser-greeter
+#%%{_libdir}/ksyncdbusenv
 %{_libdir}/libkdeinit5_kcminit.so
 %{_libdir}/libkdeinit5_kcminit_startup.so
 %{_libdir}/libkdeinit5_klipper.so
@@ -152,7 +190,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/plugins/kf5/kded/freespacenotifier.so
 %{_libdir}/qt5/plugins/kf5/kded/ksysguard.so
 %{_libdir}/qt5/plugins/kf5/kded/ktimezoned.so
-%{_libdir}/qt5/plugins/kf5/kded/solidautoeject.so
+#%%{_libdir}/qt5/plugins/kf5/kded/solidautoeject.so
 %{_libdir}/qt5/plugins/kf5/kded/soliduiserver.so
 %{_libdir}/qt5/plugins/kf5/kded/statusnotifierwatcher.so
 %{_libdir}/qt5/plugins/kf5/kio/desktop.so
@@ -257,7 +295,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/qt5/qml/org/kde/taskmanager
 %{_libdir}/qt5/qml/org/kde/taskmanager/libtaskmanagerplugin.so
 %{_libdir}/qt5/qml/org/kde/taskmanager/qmldir
-%attr(755,root,root) %{_libdir}/startplasma
+#%%attr(755,root,root) %{_libdir}/startplasma
 %{_desktopdir}/org.kde.klipper.desktop
 %{_desktopdir}/plasma-windowed.desktop
 %{_datadir}/config.kcfg/freespacenotifier.kcfg
@@ -317,8 +355,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kconf_update/krunnerplugins.upd
 %{_datadir}/kdevappwizard/templates/ion-dataengine.tar.bz2
 %dir %{_datadir}/kio_desktop
-%dir %{_datadir}/kio_desktop/DesktopLinks
-%{_datadir}/kio_desktop/DesktopLinks/Home.desktop
+#%%dir %{_datadir}/kio_desktop/DesktopLinks
+#%%{_datadir}/kio_desktop/DesktopLinks/Home.desktop
 %{_datadir}/kio_desktop/directory.desktop
 %{_datadir}/kio_desktop/directory.trash
 %{_datadir}/knotifications5/freespacenotifier.notifyrc
@@ -413,22 +451,22 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kservices5/plasma-wallpaper-org.kde.image.desktop
 %{_datadir}/kservices5/plasma-wallpaper-org.kde.slideshow.desktop
 %{_datadir}/kservices5/programs.protocol
-%{_datadir}/kservices5/recentdocuments.desktop
+#%%{_datadir}/kservices5/recentdocuments.desktop
 %{_datadir}/kservicetypes5/phononbackend.desktop
 %{_datadir}/kservicetypes5/plasma-geolocationprovider.desktop
 %{_datadir}/kservicetypes5/plasma-layouttemplate.desktop
 %{_datadir}/kservicetypes5/plasma_shareprovider.desktop
-%dir %{_datadir}/ksmserver
-%dir %{_datadir}/ksmserver/themes
-%dir %{_datadir}/ksmserver/themes/contour
-%dir %{_datadir}/ksmserver/themes/default
-%{_datadir}/ksmserver/themes/contour/ContourButton.qml
-%{_datadir}/ksmserver/themes/contour/main.qml
-%{_datadir}/ksmserver/themes/contour/metadata.desktop
-%{_datadir}/ksmserver/themes/contour/screenshot.png
-%{_datadir}/ksmserver/themes/default/KSMButton.qml
-%{_datadir}/ksmserver/themes/default/metadata.desktop
-%{_datadir}/ksmserver/themes/default/screenshot.png
+#%%dir %{_datadir}/ksmserver
+#%%dir %{_datadir}/ksmserver/themes
+#%%dir %{_datadir}/ksmserver/themes/contour
+#%%dir %{_datadir}/ksmserver/themes/default
+#%%{_datadir}/ksmserver/themes/contour/ContourButton.qml
+#%%{_datadir}/ksmserver/themes/contour/main.qml
+#%%{_datadir}/ksmserver/themes/contour/metadata.desktop
+#%%{_datadir}/ksmserver/themes/contour/screenshot.png
+#%%{_datadir}/ksmserver/themes/default/KSMButton.qml
+#%%{_datadir}/ksmserver/themes/default/metadata.desktop
+#%%{_datadir}/ksmserver/themes/default/screenshot.png
 %dir %{_datadir}/ksplash
 %dir %{_datadir}/ksplash/Themes
 %dir %{_datadir}/ksplash/Themes/Classic
@@ -499,7 +537,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/UserList.qml
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/VirtualKeyboard.qml
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/artwork/README.txt
-%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/artwork/background.png
+#%%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/artwork/background.png
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/artwork/logout_primary.svgz
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/artwork/restart_primary.svgz
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/artwork/shutdown_primary.svgz
@@ -537,8 +575,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/splash/images/busywidget.svgz
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/splash/images/kde.svgz
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/splash/images/plasma.svgz
-%dir %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/userswitcher
-%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/userswitcher/UserSwitcher.qml
+#%%dir %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/userswitcher
+#%%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/userswitcher/UserSwitcher.qml
 %dir %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/windowdecoration
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/windowdecoration/WindowDecoration.qml
 %dir %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/windowswitcher
@@ -575,8 +613,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/plasma/plasmoids/org.kde.plasma.appmenu/metadata.json
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.battery
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/code
-%{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/code/logic.js
+#%%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/code
+#%%{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/code/logic.js
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/config
 %{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/config/config.qml
 %{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/config/main.xml
@@ -654,8 +692,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/plasma/plasmoids/org.kde.plasma.icon/metadata.json
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents/code
-%{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents/code/data.js
+#%%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents/code
+#%%{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents/code/data.js
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents/config
 %{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents/config/config.qml
 %{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents/config/main.xml
@@ -666,19 +704,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/metadata.json
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/contents/config/config.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/contents/config/main.xml
+#%%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/contents/config
+#%%{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/contents/config/config.qml
+#%%{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/contents/config/main.xml
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/contents/ui
 %{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/contents/ui/ExpandedRepresentation.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/contents/ui/configGeneral.qml
+#%%{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/contents/ui/configGeneral.qml
 %{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/contents/ui/main.qml
 %{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/metadata.desktop
 %{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/metadata.json
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.notifications
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/code
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/code/uiproperties.js
+#%%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/code
+#%%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/code/uiproperties.js
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/config
 %{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/config/config.qml
 %{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/config/main.xml
@@ -932,7 +970,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/sddm/themes/breeze/components/UserList.qml
 %{_datadir}/sddm/themes/breeze/components/VirtualKeyboard.qml
 %dir %{_datadir}/sddm/themes/breeze/components/artwork
-%{_datadir}/sddm/themes/breeze/components/artwork/background.png
+#%%{_datadir}/sddm/themes/breeze/components/artwork/background.png
 %{_datadir}/sddm/themes/breeze/components/artwork/logout_primary.svgz
 %{_datadir}/sddm/themes/breeze/components/artwork/restart_primary.svgz
 %{_datadir}/sddm/themes/breeze/components/artwork/shutdown_primary.svgz
@@ -945,11 +983,11 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/tests
 %{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/tests/test.qml
 /etc/xdg/autostart/org.kde.plasmashell.desktop
-%{_libdir}/baloorunner
-%{_libdir}/qt5/plugins/appstreamrunner.so
+#%%{_libdir}/baloorunner
+#%%{_libdir}/qt5/plugins/appstreamrunner.so
 %{_desktopdir}/org.kde.plasmashell.desktop
 %{_datadir}/dbus-1/services/org.kde.baloorunner.service
-%{_datadir}/kservices5/appstreamrunner.desktop
+#%%{_datadir}/kservices5/appstreamrunner.desktop
 
 %files devel
 %defattr(644,root,root,755)
@@ -964,3 +1002,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libkworkspace5.so
 %{_libdir}/libtaskmanager.so
 %{_libdir}/libweather_ion.so
+%{_includedir}/colorcorrect
+%{_libdir}/cmake/LibColorCorrect
+%{_libdir}/libcolorcorrect.so
