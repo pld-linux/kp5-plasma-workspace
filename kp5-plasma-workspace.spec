@@ -1,20 +1,18 @@
 # TODO:
 #  * dbusmenu-qt5 , Support for notification area menus via the DBusMenu protocol , <https://launchpad.net/libdbusmenu-qt>
 #
-# * KF5Prison (required version >= 1.2.0) , Prison library , <http://projects.kde.org/prison>
-#   Needed to create mobile barcodes from clipboard data (no stable release currently)
-%define		kdeplasmaver	5.14.4
+%define		kdeplasmaver	5.14.5
 %define		qtver		5.9.0
 %define		kpname		plasma-workspace
 
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
-Version:	5.14.4
+Version:	5.14.5
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	eaeaeaf57be7d45752ec92f0b5beda0b
+# Source0-md5:	95b10cf1fdc0016cddc5b60bf011b1a2
 Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
@@ -45,6 +43,7 @@ BuildRequires:	kf5-kwallet-devel
 BuildRequires:	kf5-kxmlrpcclient-devel
 BuildRequires:	kf5-networkmanager-qt-devel
 BuildRequires:	kf5-plasma-framework-devel
+BuildRequires:	kf5-prison-devel
 BuildRequires:	kp5-kwin-devel >= %{kdeplasmaver}
 BuildRequires:	kp5-libkscreen-devel >= %{kdeplasmaver}
 BuildRequires:	kp5-libksysguard-devel >= %{kdeplasmaver}
@@ -988,6 +987,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/org.kde.plasmashell.desktop
 %{_datadir}/dbus-1/services/org.kde.baloorunner.service
 #%%{_datadir}/kservices5/appstreamrunner.desktop
+%{_datadir}/kservices5/plasma-runner-appstream.desktop
+%{_datadir}/kservices5/plasma-runner-recentdocuments.desktop
+%{_datadir}/kservices5/plasma-runner-webshortcuts_config.desktop
 
 %files devel
 %defattr(644,root,root,755)
