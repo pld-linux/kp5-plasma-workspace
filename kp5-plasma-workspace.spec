@@ -31,6 +31,7 @@ BuildRequires:	kf5-kdelibs4support-devel
 BuildRequires:	kf5-kdesu-devel
 BuildRequires:	kf5-kdoctools-devel
 BuildRequires:	kf5-kglobalaccel-devel
+BuildRequires:	kf5-kholidays-devel
 BuildRequires:	kf5-kidletime-devel
 BuildRequires:	kf5-kjsembed-devel
 BuildRequires:	kf5-knewstuff-devel
