@@ -1,18 +1,18 @@
 # TODO:
 #  * dbusmenu-qt5 , Support for notification area menus via the DBusMenu protocol , <https://launchpad.net/libdbusmenu-qt>
 #
-%define		kdeplasmaver	5.14.5
+%define		kdeplasmaver	5.15.3
 %define		qtver		5.9.0
 %define		kpname		plasma-workspace
 
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
-Version:	5.14.5
+Version:	5.15.3
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	95b10cf1fdc0016cddc5b60bf011b1a2
+# Source0-md5:	582ef2fb97a9020c09d86118c04f3b0a
 Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
@@ -50,6 +50,7 @@ BuildRequires:	kp5-libkscreen-devel >= %{kdeplasmaver}
 BuildRequires:	kp5-libksysguard-devel >= %{kdeplasmaver}
 BuildRequires:	libdbusmenu-qt5-devel
 BuildRequires:	libqalculate-devel >= 2.8.2
+BuildRequires:	ninja
 BuildRequires:	pam-devel
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	xz
@@ -80,16 +81,14 @@ Pliki nagłówkowe dla programistów używających %{kpname}.
 %build
 install -d build
 cd build
-%cmake \
+%cmake -G Ninja \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
 	../
-%{__make}
+%ninja_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-%{__make} -C build/ install \
-        DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 install -p -D %{SOURCE1} $RPM_BUILD_ROOT/etc/pam.d/kde
 
@@ -991,6 +990,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kservices5/plasma-runner-appstream.desktop
 %{_datadir}/kservices5/plasma-runner-recentdocuments.desktop
 %{_datadir}/kservices5/plasma-runner-webshortcuts_config.desktop
+/etc/xdg/wallpaperplugin.knsrc
+%dir %{_libdir}/qt5/plugins/kcms
+%attr(755,root,root) %{_libdir}/qt5/plugins/kcms/kcm_translations.so
+%{_datadir}/dbus-1/services/org.kde.LogoutPrompt.service
+%dir %{_datadir}/kpackage/kcms
+%dir %{_datadir}/kpackage/kcms/kcm_translations
+%dir %{_datadir}/kpackage/kcms/kcm_translations/contents
+%dir %{_datadir}/kpackage/kcms/kcm_translations/contents/ui
+%{_datadir}/kpackage/kcms/kcm_translations/contents/ui/main.qml
+%{_datadir}/kpackage/kcms/kcm_translations/metadata.desktop
+%{_datadir}/kpackage/kcms/kcm_translations/metadata.json
+%{_datadir}/kservices5/kcm_translations.desktop
 
 %files devel
 %defattr(644,root,root,755)
