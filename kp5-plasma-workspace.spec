@@ -50,6 +50,7 @@ BuildRequires:	kf5-prison-devel
 BuildRequires:	kp5-kwin-devel >= %{kdeplasmaver}
 BuildRequires:	kp5-libkscreen-devel >= %{kdeplasmaver}
 BuildRequires:	kp5-libksysguard-devel >= %{kdeplasmaver}
+BuildRequires:	kp5-kscreenlocker-devel >= %{kdeplasmaver}
 BuildRequires:	libdbusmenu-qt5-devel
 BuildRequires:	libqalculate-devel >= 2.8.2
 BuildRequires:	ninja
