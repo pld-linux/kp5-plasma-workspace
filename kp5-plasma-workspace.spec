@@ -8,7 +8,7 @@
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
 Version:	5.15.3
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -23,11 +23,13 @@ BuildRequires:	cmake >= 2.8.12
 BuildRequires:	gpsd-devel
 BuildRequires:	kf5-baloo-devel
 BuildRequires:	kf5-extra-cmake-modules >= 5.50
+BuildRequires:	kf5-kactivities-devel
 BuildRequires:	kf5-kcmutils-devel
 BuildRequires:	kf5-kcrash-devel
 BuildRequires:	kf5-kdbusaddons-devel
 BuildRequires:	kf5-kdeclarative-devel
 BuildRequires:	kf5-kdelibs4support-devel
+BuildRequires:	kf5-kded-devel
 BuildRequires:	kf5-kdesu-devel
 BuildRequires:	kf5-kdoctools-devel
 BuildRequires:	kf5-kglobalaccel-devel
