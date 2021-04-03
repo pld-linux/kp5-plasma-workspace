@@ -942,9 +942,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier/contents
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier/contents/config
 %{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier/contents/config/main.xml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.notifications
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui
+%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier/contents/ui
 %{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier/contents/ui/DeviceItem.qml
 %{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier/contents/ui/FullRepresentation.qml
 %{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier/contents/ui/devicenotifier.qml
