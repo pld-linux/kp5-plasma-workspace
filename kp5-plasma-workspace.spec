@@ -8,7 +8,7 @@
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
 Version:	5.21.3
-Release:	2
+Release:	3
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -786,9 +786,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kconf_update/krunnerhistory.upd
 %attr(755,root,root) %{_datadir}/kconf_update/style_widgetstyle_default_breeze.pl
 %{_datadir}/kconf_update/style_widgetstyle_default_breeze.upd
+%dir %{_datadir}/kcontrol
 %dir %{_datadir}/kcontrol/pics
 %{_datadir}/kcontrol/pics/logo.png
 %{_datadir}/kcontrol/pics/mini-world.png
+%dir %{_datadir}/kdisplay
 %dir %{_datadir}/kdisplay/app-defaults
 %{_datadir}/kdisplay/app-defaults/AAAAAAGeneral.ad
 %{_datadir}/kdisplay/app-defaults/AAAMotif.ad
@@ -810,11 +812,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kdisplay/app-defaults/Xawtv.ad
 %{_datadir}/kdisplay/app-defaults/Xdvi.ad
 %{_datadir}/kdisplay/app-defaults/Xpdf.ad
+%dir %{_datadir}/kfontinst/icons/hicolor/16x16
 %dir %{_datadir}/kfontinst/icons/hicolor/16x16/actions
 %{_datadir}/kfontinst/icons/hicolor/16x16/actions/addfont.png
 %{_datadir}/kfontinst/icons/hicolor/16x16/actions/font-disable.png
 %{_datadir}/kfontinst/icons/hicolor/16x16/actions/font-enable.png
 %{_datadir}/kfontinst/icons/hicolor/16x16/actions/fontstatus.png
+%dir %{_datadir}/kfontinst/icons/hicolor/22x22
 %dir %{_datadir}/kfontinst/icons/hicolor/22x22/actions
 %{_datadir}/kfontinst/icons/hicolor/22x22/actions/addfont.png
 %{_datadir}/kfontinst/icons/hicolor/22x22/actions/font-disable.png
@@ -831,29 +835,34 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/knsrcfiles/wallpaper.knsrc
 %{_datadir}/knsrcfiles/wallpaperplugin.knsrc
 %{_datadir}/knsrcfiles/xcursor.knsrc
+%dir %{_datadir}/konqsidebartng
 %dir %{_datadir}/konqsidebartng/virtual_folders
 %dir %{_datadir}/konqsidebartng/virtual_folders/services
 %{_datadir}/konqsidebartng/virtual_folders/services/fonts.desktop
 %dir %{_datadir}/kpackage/kcms/kcm5_icons
 %{_datadir}/kpackage/kcms/kcm5_icons/metadata.desktop
 %{_datadir}/kpackage/kcms/kcm5_icons/metadata.json
+%dir %{_datadir}/kpackage/kcms/kcm5_icons/contents
 %dir %{_datadir}/kpackage/kcms/kcm5_icons/contents/ui
 %{_datadir}/kpackage/kcms/kcm5_icons/contents/ui/IconSizePopup.qml
 %{_datadir}/kpackage/kcms/kcm5_icons/contents/ui/main.qml
 %dir %{_datadir}/kpackage/kcms/kcm_colors
 %{_datadir}/kpackage/kcms/kcm_colors/metadata.desktop
 %{_datadir}/kpackage/kcms/kcm_colors/metadata.json
+%dir %{_datadir}/kpackage/kcms/kcm_colors/contents
 %dir %{_datadir}/kpackage/kcms/kcm_colors/contents/ui
 %{_datadir}/kpackage/kcms/kcm_colors/contents/ui/main.qml
 %dir %{_datadir}/kpackage/kcms/kcm_cursortheme
 %{_datadir}/kpackage/kcms/kcm_cursortheme/metadata.desktop
 %{_datadir}/kpackage/kcms/kcm_cursortheme/metadata.json
+%dir %{_datadir}/kpackage/kcms/kcm_cursortheme/contents
 %dir %{_datadir}/kpackage/kcms/kcm_cursortheme/contents/ui
 %{_datadir}/kpackage/kcms/kcm_cursortheme/contents/ui/Delegate.qml
 %{_datadir}/kpackage/kcms/kcm_cursortheme/contents/ui/main.qml
 %dir %{_datadir}/kpackage/kcms/kcm_desktoptheme
 %{_datadir}/kpackage/kcms/kcm_desktoptheme/metadata.desktop
 %{_datadir}/kpackage/kcms/kcm_desktoptheme/metadata.json
+%dir %{_datadir}/kpackage/kcms/kcm_desktoptheme/contents
 %dir %{_datadir}/kpackage/kcms/kcm_desktoptheme/contents/ui
 %{_datadir}/kpackage/kcms/kcm_desktoptheme/contents/ui/Hand.qml
 %{_datadir}/kpackage/kcms/kcm_desktoptheme/contents/ui/ThemePreview.qml
@@ -861,6 +870,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/kpackage/kcms/kcm_fonts
 %{_datadir}/kpackage/kcms/kcm_fonts/metadata.desktop
 %{_datadir}/kpackage/kcms/kcm_fonts/metadata.json
+%dir %{_datadir}/kpackage/kcms/kcm_fonts/contents
 %dir %{_datadir}/kpackage/kcms/kcm_fonts/contents/ui
 %{_datadir}/kpackage/kcms/kcm_fonts/contents/ui/ContextualHelpButton.qml
 %{_datadir}/kpackage/kcms/kcm_fonts/contents/ui/FontWidget.qml
@@ -868,11 +878,13 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/kpackage/kcms/kcm_lookandfeel
 %{_datadir}/kpackage/kcms/kcm_lookandfeel/metadata.desktop
 %{_datadir}/kpackage/kcms/kcm_lookandfeel/metadata.json
+%dir %{_datadir}/kpackage/kcms/kcm_lookandfeel/contents
 %dir %{_datadir}/kpackage/kcms/kcm_lookandfeel/contents/ui
 %{_datadir}/kpackage/kcms/kcm_lookandfeel/contents/ui/main.qml
 %dir %{_datadir}/kpackage/kcms/kcm_style
 %{_datadir}/kpackage/kcms/kcm_style/metadata.desktop
 %{_datadir}/kpackage/kcms/kcm_style/metadata.json
+%dir %{_datadir}/kpackage/kcms/kcm_style/contents
 %dir %{_datadir}/kpackage/kcms/kcm_style/contents/ui
 %{_datadir}/kpackage/kcms/kcm_style/contents/ui/EffectSettingsPopup.qml
 %{_datadir}/kpackage/kcms/kcm_style/contents/ui/GtkStylePage.qml
@@ -977,33 +989,40 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpu
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpu/metadata.desktop
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpu/metadata.json
+%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpu/contents
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpu/contents/config
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpu/contents/config/faceproperties
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpucore
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpucore/metadata.desktop
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpucore/metadata.json
+%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpucore/contents
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpucore/contents/config
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpucore/contents/config/faceproperties
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskactivity
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskactivity/metadata.desktop
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskactivity/metadata.json
+%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskactivity/contents
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskactivity/contents/config
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskactivity/contents/config/faceproperties
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskusage
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskusage/metadata.desktop
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskusage/metadata.json
+%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskusage/contents
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskusage/contents/config
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskusage/contents/config/faceproperties
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.memory
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.memory/metadata.desktop
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.memory/metadata.json
+%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.memory/contents
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.memory/contents/config
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.memory/contents/config/faceproperties
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.net
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.net/metadata.desktop
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.net/metadata.json
+%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.net/contents
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.net/contents/config
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.net/contents/config/faceproperties
+%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/contents
 %dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/config
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/config/config.qml
 %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/config/main.xml
