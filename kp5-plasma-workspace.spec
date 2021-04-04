@@ -8,7 +8,7 @@
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
 Version:	5.21.3
-Release:	4
+Release:	5
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -812,6 +812,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kdisplay/app-defaults/Xawtv.ad
 %{_datadir}/kdisplay/app-defaults/Xdvi.ad
 %{_datadir}/kdisplay/app-defaults/Xpdf.ad
+%dir %{_datadir}/kfontinst
+%dir %{_datadir}/kfontinst/icons
 %dir %{_datadir}/kfontinst/icons/hicolor
 %dir %{_datadir}/kfontinst/icons/hicolor/16x16
 %dir %{_datadir}/kfontinst/icons/hicolor/16x16/actions
