@@ -1,18 +1,18 @@
 # TODO:
 #  * dbusmenu-qt5 , Support for notification area menus via the DBusMenu protocol , <https://launchpad.net/libdbusmenu-qt>
 #
-%define		kdeplasmaver	5.22.0
+%define		kdeplasmaver	5.22.1
 %define		qtver		5.9.0
 %define		kpname		plasma-workspace
 
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
-Version:	5.22.0
+Version:	5.22.1
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	543ceb5e4707b0c879dc727121e74fe3
+# Source0-md5:	d2933e9d1a4ae2de40bb5937e7951791
 Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
@@ -96,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 
 install -p -D %{SOURCE1} $RPM_BUILD_ROOT/etc/pam.d/kde
 
-%find_lang %{kpname} --all-name
+%find_lang %{kpname} --all-name --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -1033,9 +1033,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/plasma-apply-desktoptheme
 %attr(755,root,root) %{_bindir}/plasma-apply-lookandfeel
 %attr(755,root,root) %{_bindir}/plasma-apply-wallpaperimage
+%attr(755,root,root) %{_libdir}/qt5/plugins/kcm_fontinst.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcm_formats.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcms/kcm_autostart.so
-%attr(755,root,root) %{_libdir}/qt5/plugins/kcms/kcm_fontinst.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcms/kcm_nightcolor.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kcms/kcm_notifications.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kf5/krunner/calculator.so
