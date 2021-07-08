@@ -8,7 +8,7 @@
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
 Version:	5.22.3
-Release:	3
+Release:	4
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -1046,11 +1046,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/knotifications5/devicenotifications.notifyrc
 %{_datadir}/knsrcfiles/wallpaper-mobile.knsrc
 %dir %{_datadir}/kpackage/kcms/kcm_autostart
+%dir %{_datadir}/kpackage/kcms/kcm_autostart/contents
 %dir %{_datadir}/kpackage/kcms/kcm_autostart/contents/ui
 %{_datadir}/kpackage/kcms/kcm_autostart/contents/ui/main.qml
 %{_datadir}/kpackage/kcms/kcm_autostart/metadata.desktop
 %{_datadir}/kpackage/kcms/kcm_autostart/metadata.json
 %dir %{_datadir}/kpackage/kcms/kcm_nightcolor
+%dir %{_datadir}/kpackage/kcms/kcm_nightcolor/contents
 %dir %{_datadir}/kpackage/kcms/kcm_nightcolor/contents/ui
 %{_datadir}/kpackage/kcms/kcm_nightcolor/contents/ui/LocationsFixedView.qml
 %{_datadir}/kpackage/kcms/kcm_nightcolor/contents/ui/NumberField.qml
@@ -1060,6 +1062,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kpackage/kcms/kcm_nightcolor/metadata.desktop
 %{_datadir}/kpackage/kcms/kcm_nightcolor/metadata.json
 %dir %{_datadir}/kpackage/kcms/kcm_notifications
+%dir %{_datadir}/kpackage/kcms/kcm_notifications/contents
 %dir %{_datadir}/kpackage/kcms/kcm_notifications/contents/ui
 %{_datadir}/kpackage/kcms/kcm_notifications/contents/ui/ApplicationConfiguration.qml
 %{_datadir}/kpackage/kcms/kcm_notifications/contents/ui/PopupPositionPage.qml
