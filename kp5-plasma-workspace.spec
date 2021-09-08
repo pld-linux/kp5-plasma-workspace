@@ -11,7 +11,7 @@ Version:	5.22.5
 Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
-Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
+Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
 # Source0-md5:	5cd3cb177814b8d5df1a32761bcb65a3
 Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
