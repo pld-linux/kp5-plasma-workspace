@@ -1,18 +1,18 @@
 # TODO:
 #  * dbusmenu-qt5 , Support for notification area menus via the DBusMenu protocol , <https://launchpad.net/libdbusmenu-qt>
 #
-%define		kdeplasmaver	5.22.5
+%define		kdeplasmaver	5.23.0
 %define		qtver		5.9.0
 %define		kpname		plasma-workspace
 
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
-Version:	5.22.5
-Release:	2
+Version:	5.23.0
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	5cd3cb177814b8d5df1a32761bcb65a3
+# Source0-md5:	d5a3c1057d57015b7a9ef2aff69b6d7f
 Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
@@ -130,12 +130,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/lockscreen/config.qml
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/lockscreen/config.xml
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/logout/timer.js
-%{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/ui/logic.js
-%{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/contents/ui/DelegateToolButtons.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/contents/ui/ImageItemDelegate.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/contents/ui/TextItemDelegate.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/contents/ui/UrlItemDelegate.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents/ui/data.js
+%{_datadir}/plasma/plasmoids/org.kde.plasma.battery
+%{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard
+%{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout
 %{_datadir}/sddm/themes/breeze/components/WallpaperFader.qml
 %dir %{_datadir}/sddm/themes/breeze/faces
 %{_datadir}/sddm/themes/breeze/faces/.face.icon
@@ -153,8 +150,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/plasmawindowed
 %attr(755,root,root) %{_bindir}/systemmonitor
 %attr(755,root,root) %{_bindir}/xembedsniproxy
-%{_libdir}/libkdeinit5_kcminit.so
-%{_libdir}/libkdeinit5_kcminit_startup.so
 %{_libdir}/libkworkspace5.so.5
 %{_libdir}/libkworkspace5.so.5.*.*
 %{_libdir}/libplasma-geolocation-interface.so.5
@@ -172,15 +167,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/plugins/kf5/kded/soliduiserver.so
 %{_libdir}/qt5/plugins/kf5/kded/statusnotifierwatcher.so
 %{_libdir}/qt5/plugins/kf5/kio/desktop.so
-%{_libdir}/qt5/plugins/kpackage/packagestructure/plasma_packagestructure_layoutemplate.so
-%{_libdir}/qt5/plugins/kpackage/packagestructure/plasma_packagestructure_lookandfeel.so
-%{_libdir}/qt5/plugins/kpackage/packagestructure/plasma_packagestructure_plasmashell.so
-%{_libdir}/qt5/plugins/kpackage/packagestructure/plasma_packagestructure_wallpaper.so
-%{_libdir}/qt5/plugins/kpackage/packagestructure/plasma_packagestructure_wallpaperimages.so
 %dir %{_libdir}/qt5/plugins/phonon_platform
 %{_libdir}/qt5/plugins/phonon_platform/kde.so
-%{_libdir}/qt5/plugins/plasma-geolocation-gps.so
-%{_libdir}/qt5/plugins/plasma-geolocation-ip.so
 %dir %{_libdir}/qt5/plugins/plasma
 %dir %{_libdir}/qt5/plugins/plasma/applets
 %{_libdir}/qt5/plugins/plasma/applets/org.kde.plasma.private.systemtray.so
@@ -294,23 +282,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/desktop-directories/kf5-utilities-pim.directory
 %{_datadir}/desktop-directories/kf5-utilities-xutils.directory
 %{_datadir}/desktop-directories/kf5-utilities.directory
-%{_datadir}/kdevappwizard/templates/ion-dataengine.tar.bz2
 %dir %{_datadir}/kio_desktop
 %{_datadir}/kio_desktop/directory.desktop
 %{_datadir}/kio_desktop/directory.trash
 %{_datadir}/knotifications5/freespacenotifier.notifyrc
 %{_datadir}/knotifications5/phonon.notifyrc
-%{_datadir}/kservices5/applications.protocol
-%{_datadir}/kservices5/desktop.protocol
-%{_datadir}/kservices5/ion-bbcukmet.desktop
-%{_datadir}/kservices5/ion-envcan.desktop
-%{_datadir}/kservices5/ion-noaa.desktop
-%{_datadir}/kservices5/ion-wettercom.desktop
-%{_datadir}/kservices5/plasma-geolocation-gps.desktop
-%{_datadir}/kservices5/plasma-geolocation-ip.desktop
-%{_datadir}/kservices5/programs.protocol
 %{_datadir}/kservicetypes5/phononbackend.desktop
-%{_datadir}/kservicetypes5/plasma-geolocationprovider.desktop
 %{_datadir}/kservicetypes5/plasma-layouttemplate.desktop
 %dir %{_datadir}/ksplash
 %dir %{_datadir}/ksplash/Themes
@@ -418,142 +395,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/splash/images/busywidget.svgz
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/splash/images/kde.svgz
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/splash/images/plasma.svgz
-%dir %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/windowdecoration
-%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/windowdecoration/WindowDecoration.qml
 %dir %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/windowswitcher
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/windowswitcher/WindowSwitcher.qml
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/metadata.desktop
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.activitybar
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.activitybar/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.activitybar/contents/ui
-%{_datadir}/plasma/plasmoids/org.kde.plasma.activitybar/contents/ui/main.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.activitybar/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.activitybar/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.analogclock
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.analogclock/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.analogclock/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.analogclock/contents/config/config.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.analogclock/contents/config/main.xml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.analogclock/contents/ui
-%{_datadir}/plasma/plasmoids/org.kde.plasma.analogclock/contents/ui/Hand.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.analogclock/contents/ui/analogclock.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.analogclock/contents/ui/configGeneral.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.analogclock/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.analogclock/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.appmenu
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.appmenu/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.appmenu/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.appmenu/contents/config/config.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.appmenu/contents/config/main.xml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.appmenu/contents/ui
-%{_datadir}/plasma/plasmoids/org.kde.plasma.appmenu/contents/ui/configGeneral.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.appmenu/contents/ui/main.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.appmenu/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.appmenu/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.battery
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/config/main.xml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/ui
-%{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/ui/BadgeOverlay.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/ui/BatteryItem.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/ui/BrightnessItem.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/ui/CompactRepresentation.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/ui/InhibitionHint.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/ui/PopupDialog.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/ui/PowerManagementItem.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.battery/contents/ui/batterymonitor.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.battery/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.battery/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/contents/ui
-%{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/contents/ui/BarcodePage.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/contents/ui/ClipboardItemDelegate.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/contents/ui/ClipboardPage.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/contents/ui/Menu.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/contents/ui/clipboard.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.clipboard/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock/contents/config/config.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock/contents/config/main.xml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui
-%{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/CalendarView.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/DigitalClock.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/MonthMenu.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/Tooltip.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/configAppearance.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/configCalendar.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/configTimeZones.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock/contents/ui/main.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.icon
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.icon/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.icon/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.icon/contents/config/main.xml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.icon/contents/ui
-%{_datadir}/plasma/plasmoids/org.kde.plasma.icon/contents/ui/main.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.icon/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.icon/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents/config/config.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents/config/main.xml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents/ui
-%{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents/ui/ConfigGeneral.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/contents/ui/lockout.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.lock_logout/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/contents/ui
-%{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/contents/ui/ExpandedRepresentation.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/contents/ui/main.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.panelspacer
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.panelspacer/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.panelspacer/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.panelspacer/contents/config/main.xml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.panelspacer/contents/ui
-%{_datadir}/plasma/plasmoids/org.kde.plasma.panelspacer/contents/ui/main.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.panelspacer/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.panelspacer/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/applet
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/applet/CompactApplet.qml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/config/config.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/config/main.xml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/ConfigEntries.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/ConfigGeneral.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/CurrentItemHighLight.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/ExpandedRepresentation.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/ExpanderArrow.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/HiddenItemsView.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/PlasmoidPopupsContainer.qml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/items
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/items/AbstractItem.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/items/PlasmoidItem.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/items/PulseAnimation.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/items/StatusNotifierItem.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/main.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemtray
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemtray/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemtray/contents/ui
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemtray/contents/ui/main.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemtray/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemtray/metadata.json
+%{_datadir}/plasma/plasmoids/org.kde.plasma.activitybar
+%{_datadir}/plasma/plasmoids/org.kde.plasma.analogclock
+%{_datadir}/plasma/plasmoids/org.kde.plasma.appmenu
+%{_datadir}/plasma/plasmoids/org.kde.plasma.digitalclock
+%{_datadir}/plasma/plasmoids/org.kde.plasma.icon
+%{_datadir}/plasma/plasmoids/org.kde.plasma.mediacontroller
+%{_datadir}/plasma/plasmoids/org.kde.plasma.panelspacer
+%{_datadir}/plasma/plasmoids/org.kde.plasma.systemtray
 %{_datadir}/plasma/services/activities.operations
 %{_datadir}/plasma/services/applicationjobs.operations
 %{_datadir}/plasma/services/apps.operations
@@ -640,7 +493,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kde-systemd-start-condition
 %attr(755,root,root) %{_bindir}/kfontinst
 %attr(755,root,root) %{_bindir}/kfontview
-%attr(755,root,root) %{_bindir}/krdb
 %attr(755,root,root) %{_bindir}/lookandfeeltool
 %attr(755,root,root) %{_bindir}/plasma-shutdown
 %attr(755,root,root) %{_bindir}/plasma_session
@@ -686,8 +538,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/plugins/kf5/krunner/krunner_shell.so
 %{_libdir}/qt5/plugins/kf5/krunner/krunner_webshortcuts.so
 %{_libdir}/qt5/plugins/kf5/krunner/krunner_windowedwidgets.so
-%{_libdir}/qt5/plugins/kfontviewpart.so
-%{_libdir}/qt5/plugins/kio_fonts.so
 %{_libdir}/qt5/plugins/plasma/applets/org.kde.plasma.panelspacer.so
 %{_libdir}/qt5/plugins/plasma/applets/plasma_applet_systemmonitor.so
 %dir %{_libdir}/qt5/plugins/plasma/containmentactions
@@ -696,7 +546,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/plugins/plasma/containmentactions/plasma_containmentactions_paste.so
 %{_libdir}/qt5/plugins/plasma/containmentactions/plasma_containmentactions_switchdesktop.so
 %{_libdir}/qt5/plugins/plasma/containmentactions/plasma_containmentactions_switchwindow.so
-%{_libdir}/qt5/plugins/plasma_containmentactions_switchactivity.so
 %dir %{_libdir}/qt5/qml/org/kde/notificationmanager
 %{_libdir}/qt5/qml/org/kde/notificationmanager/libnotificationmanagerplugin.so
 %{_libdir}/qt5/qml/org/kde/notificationmanager/qmldir
@@ -752,28 +601,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kconf_update/krunnerhistory.upd
 %attr(755,root,root) %{_datadir}/kconf_update/style_widgetstyle_default_breeze.pl
 %{_datadir}/kconf_update/style_widgetstyle_default_breeze.upd
-%dir %{_datadir}/kdisplay
-%dir %{_datadir}/kdisplay/app-defaults
-%{_datadir}/kdisplay/app-defaults/AAAAAAGeneral.ad
-%{_datadir}/kdisplay/app-defaults/AAAMotif.ad
-%{_datadir}/kdisplay/app-defaults/AAATk.ad
-%{_datadir}/kdisplay/app-defaults/AAAXaw.ad
-%{_datadir}/kdisplay/app-defaults/AcroRead.ad
-%{_datadir}/kdisplay/app-defaults/Editres.ad
-%{_datadir}/kdisplay/app-defaults/Emacs.ad
-%{_datadir}/kdisplay/app-defaults/GV.ad
-%{_datadir}/kdisplay/app-defaults/ML.ad
-%{_datadir}/kdisplay/app-defaults/Nedit.ad
-%{_datadir}/kdisplay/app-defaults/Netscape.ad
-%{_datadir}/kdisplay/app-defaults/RVPlayer.ad
-%{_datadir}/kdisplay/app-defaults/WPerfect.ad
-%{_datadir}/kdisplay/app-defaults/XCalc.ad
-%{_datadir}/kdisplay/app-defaults/XOsview.ad
-%{_datadir}/kdisplay/app-defaults/XTerm.ad
-%{_datadir}/kdisplay/app-defaults/XV.ad
-%{_datadir}/kdisplay/app-defaults/Xawtv.ad
-%{_datadir}/kdisplay/app-defaults/Xdvi.ad
-%{_datadir}/kdisplay/app-defaults/Xpdf.ad
+
 %dir %{_datadir}/kfontinst
 %dir %{_datadir}/kfontinst/icons
 %dir %{_datadir}/kfontinst/icons/hicolor
@@ -856,7 +684,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/krunner/dbusplugins/plasma-runner-baloosearch.desktop
 %{_datadir}/kservices5/ServiceMenus/installfont.desktop
 %{_datadir}/kservices5/fontinst.desktop
-%{_datadir}/kservices5/fonts.protocol
 %{_datadir}/kservices5/fontthumbnail.desktop
 %{_datadir}/kservices5/kcm_colors.desktop
 %{_datadir}/kservices5/kcm_cursortheme.desktop
@@ -867,29 +694,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kservices5/kcm_style.desktop
 %{_datadir}/kservices5/kfontviewpart.desktop
 %{_datadir}/kservices5/plasma-containmentactions-switchactivity.desktop
-%{_datadir}/kservices5/plasma-dataengine-activities.desktop
-%{_datadir}/kservices5/plasma-dataengine-applicationjobs.desktop
-%{_datadir}/kservices5/plasma-dataengine-apps.desktop
-%{_datadir}/kservices5/plasma-dataengine-clipboard.desktop
-%{_datadir}/kservices5/plasma-dataengine-devicenotifications.desktop
-%{_datadir}/kservices5/plasma-dataengine-dict.desktop
-%{_datadir}/kservices5/plasma-dataengine-executable.desktop
-%{_datadir}/kservices5/plasma-dataengine-favicons.desktop
-%{_datadir}/kservices5/plasma-dataengine-filebrowser.desktop
-%{_datadir}/kservices5/plasma-dataengine-geolocation.desktop
-%{_datadir}/kservices5/plasma-dataengine-hotplug.desktop
-%{_datadir}/kservices5/plasma-dataengine-keystate.desktop
-%{_datadir}/kservices5/plasma-dataengine-mouse.desktop
-%{_datadir}/kservices5/plasma-dataengine-mpris2.desktop
-%{_datadir}/kservices5/plasma-dataengine-notifications.desktop
-%{_datadir}/kservices5/plasma-dataengine-packagekit.desktop
-%{_datadir}/kservices5/plasma-dataengine-places.desktop
-%{_datadir}/kservices5/plasma-dataengine-powermanagement.desktop
-%{_datadir}/kservices5/plasma-dataengine-soliddevice.desktop
-%{_datadir}/kservices5/plasma-dataengine-statusnotifieritem.desktop
-%{_datadir}/kservices5/plasma-dataengine-systemmonitor.desktop
-%{_datadir}/kservices5/plasma-dataengine-time.desktop
-%{_datadir}/kservices5/plasma-dataengine-weather.desktop
 %{_datadir}/kservices5/plasma-runner-kill_config.desktop
 %{_datadir}/kservices5/plasma-runner-webshortcuts_config.desktop
 %dir %{_datadir}/kxmlgui5/kfontinst
@@ -898,104 +702,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kxmlgui5/kfontview/kfontviewui.rc
 %{_datadir}/metainfo/org.kde.plasma.systemmonitor.appdata.xml
 %{_datadir}/metainfo/org.kde.plasma.systemmonitor.cpucore.appdata.xml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.calendar
-%{_datadir}/plasma/plasmoids/org.kde.plasma.calendar/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.calendar/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.calendar/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.calendar/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.calendar/contents/config/config.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.calendar/contents/config/main.xml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.calendar/contents/images
-%{_datadir}/plasma/plasmoids/org.kde.plasma.calendar/contents/images/mini-calendar.svgz
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.calendar/contents/ui
-%{_datadir}/plasma/plasmoids/org.kde.plasma.calendar/contents/ui/configGeneral.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.calendar/contents/ui/main.qml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier
-%{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier/contents/config/main.xml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier/contents/ui
-%{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier/contents/ui/DeviceItem.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier/contents/ui/FullRepresentation.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier/contents/ui/devicenotifier.qml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.notifications
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/CompactRepresentation.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/DraggableDelegate.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/DraggableFileArea.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/EditContextMenu.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/FullRepresentation.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/JobDetails.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/JobItem.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/NotificationHeader.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/NotificationItem.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/NotificationPopup.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/NotificationReplyField.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/SelectableLabel.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/ThumbnailStrip.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/main.qml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/global
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/global/Globals.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/global/PulseAudio.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications/contents/ui/global/qmldir
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/SystemTrayState.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray/contents/ui/items/ItemLoader.qml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpu
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpu/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpu/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpu/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpu/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpu/contents/config/faceproperties
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpucore
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpucore/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpucore/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpucore/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpucore/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpucore/contents/config/faceproperties
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskactivity
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskactivity/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskactivity/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskactivity/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskactivity/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskactivity/contents/config/faceproperties
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskusage
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskusage/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskusage/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskusage/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskusage/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskusage/contents/config/faceproperties
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.memory
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.memory/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.memory/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.memory/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.memory/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.memory/contents/config/faceproperties
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.net
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.net/metadata.desktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.net/metadata.json
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.net/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.net/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.net/contents/config/faceproperties
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/contents
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/config/config.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/config/main.xml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/ui
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/ui/CompactRepresentation.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/ui/FullRepresentation.qml
-%dir %{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/ui/config
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/ui/config/ConfigAppearance.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/ui/config/ConfigSensors.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/ui/config/FaceDetails.qml
-%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor/contents/ui/main.qml
+%{_datadir}/plasma/plasmoids/org.kde.plasma.calendar
+%{_datadir}/plasma/plasmoids/org.kde.plasma.devicenotifier
+%{_datadir}/plasma/plasmoids/org.kde.plasma.notifications
+%{_datadir}/plasma/plasmoids/org.kde.plasma.private.systemtray
+%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpu
+%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.cpucore
+%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskactivity
+%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.diskusage
+%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.memory
+%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor.net
+%{_datadir}/plasma/plasmoids/org.kde.plasma.systemmonitor
 %{_datadir}/polkit-1/actions/org.kde.fontinst.policy
 %{_datadir}/qlogging-categories5/klipper.categories
 %{_datadir}/qlogging-categories5/libnotificationmanager.categories
@@ -1054,6 +771,25 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/qlogging-categories5/kcm_translations.categories
 %{_datadir}/qlogging-categories5/myproject.categories
 %{_datadir}/sddm/themes/breeze/components/VirtualKeyboard_wayland.qml
+%attr(755,root,root) %{_bindir}/plasma-interactiveconsole
+%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/kio/kio_fonts.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kf5/parts/kfontviewpart.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/plasma_layouttemplate.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/plasma_lookandfeel.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/plasma_shell.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/plasma_wallpaper.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/wallpaper_images.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/plasma/containmentactions/plasma_containmentactions_switchactivity.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/plasma/geolocationprovider/plasma-geolocation-gps.so
+%attr(755,root,root) %{_libdir}/qt5/plugins/plasma/geolocationprovider/plasma-geolocation-ip.so
+%{_datadir}/kservices5/plasma-dataengine-applicationjobs.desktop
+%{_datadir}/kservices5/plasma-dataengine-clipboard.desktop
+%{_datadir}/metainfo/org.kde.breezedark.desktop.appdata.xml
+%{_datadir}/metainfo/org.kde.breezetwilight.desktop.appdata.xml
+%{_datadir}/metainfo/org.kde.plasma.manage-inputmethod.appdata.xml
+%{_datadir}/plasma/look-and-feel/org.kde.breezedark.desktop
+%{_datadir}/plasma/look-and-feel/org.kde.breezetwilight.desktop
+%{_datadir}/plasma/plasmoids/org.kde.plasma.manage-inputmethod
 
 %files devel
 %defattr(644,root,root,755)
