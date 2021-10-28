@@ -8,7 +8,7 @@
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
 Version:	5.23.2
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -780,6 +780,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/plasma_wallpaper.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/kpackage/packagestructure/wallpaper_images.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/plasma/containmentactions/plasma_containmentactions_switchactivity.so
+%dir %{_libdir}/qt5/plugins/plasma/geolocationprovider
 %attr(755,root,root) %{_libdir}/qt5/plugins/plasma/geolocationprovider/plasma-geolocation-gps.so
 %attr(755,root,root) %{_libdir}/qt5/plugins/plasma/geolocationprovider/plasma-geolocation-ip.so
 %{_datadir}/kservices5/plasma-dataengine-applicationjobs.desktop
