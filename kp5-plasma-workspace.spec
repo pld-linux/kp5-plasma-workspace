@@ -24,6 +24,7 @@ BuildRequires:	gpsd-devel
 BuildRequires:	kf5-baloo-devel
 BuildRequires:	kf5-extra-cmake-modules >= 5.50
 BuildRequires:	kf5-kactivities-devel
+BuildRequires:	kf5-kactivities-stats-devel
 BuildRequires:	kf5-kcmutils-devel
 BuildRequires:	kf5-kcrash-devel
 BuildRequires:	kf5-kdbusaddons-devel
