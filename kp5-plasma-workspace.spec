@@ -57,6 +57,7 @@ BuildRequires:	libdbusmenu-qt5-devel
 BuildRequires:	libqalculate-devel >= 2.8.2
 BuildRequires:	ninja
 BuildRequires:	pam-devel
+BuildRequires:	phonon-qt5-devel
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
