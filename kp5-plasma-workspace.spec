@@ -19,6 +19,7 @@ Patch1:		kp5-plasma-workspace-scripts.patch
 URL:		http://www.kde.org/
 BuildRequires:	AppStream-qt-devel
 BuildRequires:	Qt5Core-devel >= %{qtver}
+BuildRequires:	Qt5PrintSupport-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	gpsd-devel
 BuildRequires:	kf5-baloo-devel
