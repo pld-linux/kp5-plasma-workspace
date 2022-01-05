@@ -1,18 +1,18 @@
 # TODO:
 #  * dbusmenu-qt5 , Support for notification area menus via the DBusMenu protocol , <https://launchpad.net/libdbusmenu-qt>
 #
-%define		kdeplasmaver	5.23.4
+%define		kdeplasmaver	5.23.5
 %define		qtver		5.9.0
 %define		kpname		plasma-workspace
 
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
-Version:	5.23.4
-Release:	2
+Version:	5.23.5
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	b881d2067ab2b2081b1abe514df535d2
+# Source0-md5:	0e512d9c954b29738decda5a4619edd5
 Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
@@ -794,6 +794,36 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/plasma/look-and-feel/org.kde.breezedark.desktop
 %{_datadir}/plasma/look-and-feel/org.kde.breezetwilight.desktop
 %{_datadir}/plasma/plasmoids/org.kde.plasma.manage-inputmethod
+
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.activitybar.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.analogclock.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.appmenu.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.battery.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.calendar.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.clipboard.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.devicenotifier.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.digitalclock.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.icon.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.lock_logout.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.manage-inputmethod.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.mediacontroller.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.notifications.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.panelspacer.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.private.systemtray.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.systemmonitor.cpu.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.systemmonitor.cpucore.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.systemmonitor.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.systemmonitor.diskactivity.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.systemmonitor.diskusage.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.systemmonitor.memory.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.systemmonitor.net.desktop
+%{_datadir}/kservices5/plasma-applet-org.kde.plasma.systemtray.desktop
+%{_datadir}/kservices5/plasma-lookandfeel-org.kde.breeze.desktop.desktop
+%{_datadir}/kservices5/plasma-lookandfeel-org.kde.breezedark.desktop.desktop
+%{_datadir}/kservices5/plasma-lookandfeel-org.kde.breezetwilight.desktop.desktop
+%{_datadir}/kservices5/plasma-wallpaper-org.kde.color.desktop
+%{_datadir}/kservices5/plasma-wallpaper-org.kde.image.desktop
+%{_datadir}/kservices5/plasma-wallpaper-org.kde.slideshow.desktop
 
 %files devel
 %defattr(644,root,root,755)
