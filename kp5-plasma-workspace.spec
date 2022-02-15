@@ -8,7 +8,7 @@
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
 Version:	5.24.0
-Release:	3
+Release:	4
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -777,6 +777,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/kpackage/kcms/kcm_formats/contents
 %dir %{_datadir}/kpackage/kcms/kcm_formats/contents/ui
 %{_datadir}/kpackage/kcms/kcm_formats/contents/ui/main.qml
+%dir %{_datadir}/kpackage/kcms/kcm_icons
 %dir %{_datadir}/kpackage/kcms/kcm_icons/contents
 %dir %{_datadir}/kpackage/kcms/kcm_icons/contents/ui
 %{_datadir}/kpackage/kcms/kcm_icons/contents/ui/IconSizePopup.qml
