@@ -8,7 +8,7 @@
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
 Version:	5.24.0
-Release:	2
+Release:	3
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -777,6 +777,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/kpackage/kcms/kcm_formats/contents
 %dir %{_datadir}/kpackage/kcms/kcm_formats/contents/ui
 %{_datadir}/kpackage/kcms/kcm_formats/contents/ui/main.qml
+%dir %{_datadir}/kpackage/kcms/kcm_icons/contents
 %dir %{_datadir}/kpackage/kcms/kcm_icons/contents/ui
 %{_datadir}/kpackage/kcms/kcm_icons/contents/ui/IconSizePopup.qml
 %{_datadir}/kpackage/kcms/kcm_icons/contents/ui/main.qml
@@ -793,14 +794,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kservices5/ServiceMenus/setaswallpaper.desktop
 %{_datadir}/kxmlgui5/kfontview/kfontviewpart.rc
 %{_datadir}/plasma/avatars
-%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
-%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
-%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
-%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
-%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
-%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
-%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
-%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
+%dir %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
 %{_datadir}/plasma/wallpapers/org.kde.image/setaswallpaper.desktop.in
 %{_datadir}/qlogging-categories5/kcmusers.categories
