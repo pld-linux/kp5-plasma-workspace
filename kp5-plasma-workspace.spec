@@ -8,7 +8,7 @@
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
 Version:	5.24.0
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -701,6 +701,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kpackage/kcms/kcm_notifications/contents/ui/ScreenPositionSelector.qml
 %{_datadir}/kpackage/kcms/kcm_notifications/contents/ui/SourcesPage.qml
 %{_datadir}/kpackage/kcms/kcm_notifications/contents/ui/main.qml
+%dir %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/VirtualKeyboard_wayland.qml
 %{_datadir}/qlogging-categories5/kcm_translations.categories
 %{_datadir}/qlogging-categories5/myproject.categories
@@ -730,6 +731,7 @@ rm -rf $RPM_BUILD_ROOT
 %{systemduserunitdir}/plasma-workspace.target
 %{_libdir}/qt5/plugins/kcm_fontinst.so
 %{_libdir}/qt5/plugins/kf5/krunner/helprunner.so
+%dir %{_libdir}/qt5/plugins/kf5/krunner/kcms
 %{_libdir}/qt5/plugins/kf5/krunner/kcms/kcm_krunner_kill.so
 %{_libdir}/qt5/plugins/plasma/dataengine/ion_dwd.so
 %{_libdir}/qt5/plugins/plasma/kcminit/kcm_fonts_init.so
@@ -748,9 +750,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_translations.so
 %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_users.so
 %{_libdir}/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_fontinst.so
+%dir %{_libdir}/qt5/qml/org/kde/plasma/lookandfeel
 %{_libdir}/qt5/qml/org/kde/plasma/lookandfeel/liblookandfeelqmlplugin.so
 %{_libdir}/qt5/qml/org/kde/plasma/lookandfeel/qmldir
+%dir %{_libdir}/qt5/qml/org/kde/plasma/workspace/dialogs
 %{_libdir}/qt5/qml/org/kde/plasma/workspace/dialogs/SystemDialog.qml
+%dir %{_libdir}/qt5/qml/org/kde/plasma/workspace/dialogs/examples
 %{_libdir}/qt5/qml/org/kde/plasma/workspace/dialogs/examples/test.qml
 %{_libdir}/qt5/qml/org/kde/plasma/workspace/dialogs/qmldir
 %{_desktopdir}/kcm_autostart.desktop
@@ -772,6 +777,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/kpackage/kcms/kcm_formats/contents
 %dir %{_datadir}/kpackage/kcms/kcm_formats/contents/ui
 %{_datadir}/kpackage/kcms/kcm_formats/contents/ui/main.qml
+%dir %{_datadir}/kpackage/kcms/kcm_icons/contents/ui
 %{_datadir}/kpackage/kcms/kcm_icons/contents/ui/IconSizePopup.qml
 %{_datadir}/kpackage/kcms/kcm_icons/contents/ui/main.qml
 %dir %{_datadir}/kpackage/kcms/kcm_users
@@ -787,6 +793,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kservices5/ServiceMenus/setaswallpaper.desktop
 %{_datadir}/kxmlgui5/kfontview/kfontviewpart.rc
 %{_datadir}/plasma/avatars
+%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
+%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
+%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
+%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
+%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
+%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
+%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
+%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
 %{_datadir}/plasma/wallpapers/org.kde.image/setaswallpaper.desktop.in
 %{_datadir}/qlogging-categories5/kcmusers.categories
