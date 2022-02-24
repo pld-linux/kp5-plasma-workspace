@@ -1,27 +1,29 @@
 # TODO:
 #  * dbusmenu-qt5 , Support for notification area menus via the DBusMenu protocol , <https://launchpad.net/libdbusmenu-qt>
 #
-%define		kdeplasmaver	5.24.1
+%define		kdeplasmaver	5.24.2
 %define		qtver		5.9.0
 %define		kpname		plasma-workspace
 
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
-Version:	5.24.1
+Version:	5.24.2
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	8db8a3c425eefcf34a0e49dc94a12ad2
+# Source0-md5:	0cbff7630dd01f881b34115a43996483
 Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
 URL:		http://www.kde.org/
 BuildRequires:	AppStream-qt-devel
+BuildRequires:	NetworkManager-devel >= 1.4.0
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5PrintSupport-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	gpsd-devel
+BuildRequires:	ka5-kio-extras-devel
 BuildRequires:	kf5-baloo-devel
 BuildRequires:	kf5-extra-cmake-modules >= 5.50
 BuildRequires:	kf5-kactivities-devel
@@ -42,6 +44,7 @@ BuildRequires:	kf5-knewstuff-devel
 BuildRequires:	kf5-knotifyconfig-devel
 BuildRequires:	kf5-kpackage-devel
 BuildRequires:	kf5-kpeople-devel
+BuildRequires:	kf5-kquickcharts-devel
 BuildRequires:	kf5-krunner-devel
 BuildRequires:	kf5-ktexteditor-devel
 BuildRequires:	kf5-ktextwidgets-devel
@@ -56,10 +59,14 @@ BuildRequires:	kp5-libkscreen-devel >= %{kdeplasmaver}
 BuildRequires:	kp5-libksysguard-devel >= %{kdeplasmaver}
 BuildRequires:	libdbusmenu-qt5-devel
 BuildRequires:	libqalculate-devel >= 2.8.2
+BuildRequires:	mpfr-devel
 BuildRequires:	ninja
 BuildRequires:	pam-devel
 BuildRequires:	phonon-qt5-devel
 BuildRequires:	rpmbuild(macros) >= 1.164
+BuildRequires:	xorg-lib-libSM-devel
+BuildRequires:	xorg-lib-libXft-devel
+BuildRequires:	xorg-lib-libXtst-devel
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -729,7 +736,7 @@ rm -rf $RPM_BUILD_ROOT
 %{systemduserunitdir}/plasma-workspace-wayland.target
 %{systemduserunitdir}/plasma-workspace-x11.target
 %{systemduserunitdir}/plasma-workspace.target
-%{_libdir}/qt5/plugins/kcm_fontinst.so
+#%{_libdir}/qt5/plugins/kcm_fontinst.so
 %{_libdir}/qt5/plugins/kf5/krunner/helprunner.so
 %dir %{_libdir}/qt5/plugins/kf5/krunner/kcms
 %{_libdir}/qt5/plugins/kf5/krunner/kcms/kcm_krunner_kill.so
