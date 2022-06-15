@@ -4,18 +4,18 @@
 # TODO:
 #  * dbusmenu-qt5 , Support for notification area menus via the DBusMenu protocol , <https://launchpad.net/libdbusmenu-qt>
 #
-%define		kdeplasmaver	5.24.5
+%define		kdeplasmaver	5.25.0
 %define		qtver		5.9.0
 %define		kpname		plasma-workspace
 
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
-Version:	5.24.5
-Release:	2
+Version:	5.25.0
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	1756314f3b95077a4a177d6e150c0c74
+# Source0-md5:	115d252ce001b1f52b8e792cd2cec830
 Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
@@ -190,10 +190,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/qt5/plugins/plasma/applets
 %{_libdir}/qt5/plugins/plasma/applets/org.kde.plasma.private.systemtray.so
 %{_libdir}/qt5/plugins/plasma/applets/org.kde.plasma.systemtray.so
-%{_libdir}/qt5/plugins/plasma/applets/plasma_applet_appmenu.so
-%{_libdir}/qt5/plugins/plasma/applets/plasma_applet_calendar.so
-%{_libdir}/qt5/plugins/plasma/applets/plasma_applet_icon.so
-%{_libdir}/qt5/plugins/plasma/applets/plasma_applet_notifications.so
 %dir %{_libdir}/qt5/plugins/plasma/dataengine
 %{_libdir}/qt5/plugins/plasma/dataengine/ion_bbcukmet.so
 %{_libdir}/qt5/plugins/plasma/dataengine/ion_envcan.so
@@ -537,7 +533,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/plugins/kf5/krunner/krunner_webshortcuts.so
 %{_libdir}/qt5/plugins/kf5/krunner/krunner_windowedwidgets.so
 %{_libdir}/qt5/plugins/plasma/applets/org.kde.plasma.panelspacer.so
-%{_libdir}/qt5/plugins/plasma/applets/plasma_applet_systemmonitor.so
 %dir %{_libdir}/qt5/plugins/plasma/containmentactions
 %{_libdir}/qt5/plugins/plasma/containmentactions/plasma_containmentactions_applauncher.so
 %{_libdir}/qt5/plugins/plasma/containmentactions/plasma_containmentactions_contextmenu.so
@@ -681,7 +676,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/qlogging-categories5/klipper.categories
 %{_datadir}/qlogging-categories5/libnotificationmanager.categories
 %{_datadir}/qlogging-categories5/plasma-workspace.categories
-%{_datadir}/sddm/themes/breeze/BreezeMenuStyle.qml
 %{_datadir}/sddm/themes/breeze/default-logo.svg
 
 %attr(755,root,root) %{_bindir}/plasma-apply-colorscheme
@@ -716,7 +710,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kpackage/kcms/kcm_notifications/contents/ui/ScreenPositionSelector.qml
 %{_datadir}/kpackage/kcms/kcm_notifications/contents/ui/SourcesPage.qml
 %{_datadir}/kpackage/kcms/kcm_notifications/contents/ui/main.qml
-%dir %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/VirtualKeyboard_wayland.qml
 %{_datadir}/qlogging-categories5/kcm_translations.categories
 %{_datadir}/qlogging-categories5/myproject.categories
@@ -812,8 +805,26 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/plasma/avatars
 %dir %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog/SystemDialog.qml
-%{_datadir}/plasma/wallpapers/org.kde.image/setaswallpaper.desktop.in
 %{_datadir}/qlogging-categories5/kcmusers.categories
+
+%{_libdir}/qt5/plugins/kf5/kded/plasma_accentcolor_service.so
+%{_libdir}/qt5/plugins/plasma/applets/org.kde.plasma.appmenu.so
+%{_libdir}/qt5/plugins/plasma/applets/org.kde.plasma.calendar.so
+%{_libdir}/qt5/plugins/plasma/applets/org.kde.plasma.icon.so
+%{_libdir}/qt5/plugins/plasma/applets/org.kde.plasma.notifications.so
+%{_libdir}/qt5/plugins/plasma/applets/org.kde.plasma.systemmonitor.so
+%{_datadir}/kpackage/kcms/kcm_lookandfeel/contents/ui/MoreOptions.qml
+%{_datadir}/kpackage/kcms/kcm_lookandfeel/contents/ui/SimpleOptions.qml
+%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/animation/RejectPasswordAnimation.qml
+%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/animation/RejectPasswordPathAnimation.qml
+%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/layouts/org.kde.plasma.desktop-layout.js
+%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/lockscreen/NoPasswordUnlock.qml
+%{_datadir}/plasma/wallpapers/org.kde.image/contents/ui/ThumbnailsComponent.qml
+%{_datadir}/plasma/wallpapers/org.kde.slideshow/contents/ui/SlideshowComponent.qml
+%{_datadir}/plasma/wallpapers/org.kde.slideshow/contents/ui/ThumbnailsComponent.qml
+%{_datadir}/sddm/themes/breeze/components/animation/RejectPasswordAnimation.qml
+%{_datadir}/sddm/themes/breeze/components/animation/RejectPasswordPathAnimation.qml
+
 
 %files devel
 %defattr(644,root,root,755)
