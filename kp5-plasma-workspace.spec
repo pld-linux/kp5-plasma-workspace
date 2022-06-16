@@ -11,7 +11,7 @@
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
 Version:	5.25.0
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -815,13 +815,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/plugins/plasma/applets/org.kde.plasma.systemmonitor.so
 %{_datadir}/kpackage/kcms/kcm_lookandfeel/contents/ui/MoreOptions.qml
 %{_datadir}/kpackage/kcms/kcm_lookandfeel/contents/ui/SimpleOptions.qml
+%dir %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/animation
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/animation/RejectPasswordAnimation.qml
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/animation/RejectPasswordPathAnimation.qml
+%dir %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/layouts
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/layouts/org.kde.plasma.desktop-layout.js
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/lockscreen/NoPasswordUnlock.qml
 %{_datadir}/plasma/wallpapers/org.kde.image/contents/ui/ThumbnailsComponent.qml
 %{_datadir}/plasma/wallpapers/org.kde.slideshow/contents/ui/SlideshowComponent.qml
 %{_datadir}/plasma/wallpapers/org.kde.slideshow/contents/ui/ThumbnailsComponent.qml
+%dir %{_datadir}/sddm/themes/breeze/components/animation
 %{_datadir}/sddm/themes/breeze/components/animation/RejectPasswordAnimation.qml
 %{_datadir}/sddm/themes/breeze/components/animation/RejectPasswordPathAnimation.qml
 
