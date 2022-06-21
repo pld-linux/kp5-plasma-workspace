@@ -68,6 +68,7 @@ BuildRequires:	pam-devel
 BuildRequires:	phonon-qt5-devel
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	xorg-lib-libSM-devel
+BuildRequires:	xorg-lib-libXcursor-devel
 BuildRequires:	xorg-lib-libXft-devel
 BuildRequires:	xorg-lib-libXtst-devel
 BuildRequires:	xz
