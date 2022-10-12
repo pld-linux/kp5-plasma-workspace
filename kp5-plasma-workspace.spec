@@ -4,18 +4,18 @@
 # TODO:
 #  * dbusmenu-qt5 , Support for notification area menus via the DBusMenu protocol , <https://launchpad.net/libdbusmenu-qt>
 #
-%define		kdeplasmaver	5.25.5
+%define		kdeplasmaver	5.26.0
 %define		qtver		5.15.2
 %define		kpname		plasma-workspace
 
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
-Version:	5.25.5
-Release:	2
+Version:	5.26.0
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	7b1a51b85b31104087b8a3f97058ae3e
+# Source0-md5:	21a618aa0c4e29b9cc6cca4ceaf53c92
 Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
@@ -61,7 +61,7 @@ BuildRequires:	kp5-kwin-devel >= %{kdeplasmaver}
 BuildRequires:	kp5-libkscreen-devel >= %{kdeplasmaver}
 BuildRequires:	kp5-libksysguard-devel >= %{kdeplasmaver}
 BuildRequires:	libdbusmenu-qt5-devel
-BuildRequires:	libqalculate-devel >= 2.8.2
+BuildRequires:	libqalculate-devel >= 4.3.0
 BuildRequires:	mpfr-devel
 BuildRequires:	ninja
 BuildRequires:	pam-devel
@@ -300,35 +300,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kio_desktop/directory.trash
 %{_datadir}/knotifications5/freespacenotifier.notifyrc
 %{_datadir}/knotifications5/phonon.notifyrc
-%{_datadir}/kservicetypes5/phononbackend.desktop
 %{_datadir}/kservicetypes5/plasma-layouttemplate.desktop
-%dir %{_datadir}/ksplash
-%dir %{_datadir}/ksplash/Themes
-%dir %{_datadir}/ksplash/Themes/Classic
-%dir %{_datadir}/ksplash/Themes/Classic/images
-%{_datadir}/ksplash/Themes/Classic/FadeIn.qml
-%{_datadir}/ksplash/Themes/Classic/Preview.png
-%{_datadir}/ksplash/Themes/Classic/Theme.rc
-%{_datadir}/ksplash/Themes/Classic/images/background.png
-%{_datadir}/ksplash/Themes/Classic/images/icon1.png
-%{_datadir}/ksplash/Themes/Classic/images/icon2.png
-%{_datadir}/ksplash/Themes/Classic/images/icon3.png
-%{_datadir}/ksplash/Themes/Classic/images/icon4.png
-%{_datadir}/ksplash/Themes/Classic/images/icon5.png
-%{_datadir}/ksplash/Themes/Classic/images/rectangle.png
-%{_datadir}/ksplash/Themes/Classic/main.qml
-%dir %{_datadir}/ksplash/Themes/Minimalistic
-%dir %{_datadir}/ksplash/Themes/Minimalistic/images
-%{_datadir}/ksplash/Themes/Minimalistic/Preview.png
-%{_datadir}/ksplash/Themes/Minimalistic/Theme.rc
-%{_datadir}/ksplash/Themes/Minimalistic/images/kdegear.png
-%{_datadir}/ksplash/Themes/Minimalistic/images/kdeletter.png
-%{_datadir}/ksplash/Themes/Minimalistic/images/kdelogo-contrast.png
-%{_datadir}/ksplash/Themes/Minimalistic/images/kdelogo.png
-%{_datadir}/ksplash/Themes/Minimalistic/images/kdemask.png
-%{_datadir}/ksplash/Themes/Minimalistic/main.qml
-%dir %{_datadir}/ksplash/Themes/None
-%{_datadir}/ksplash/Themes/None/Theme.rc
 %dir %{_datadir}/kstyle
 %dir %{_datadir}/kstyle/themes
 %{_datadir}/kstyle/themes/qtcde.themerc
@@ -400,8 +372,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/previews/userswitcher.png
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/previews/windowdecoration.png
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/previews/windowswitcher.png
-%dir %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/runcommand
-%{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/runcommand/RunCommand.qml
 %dir %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/splash
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/splash/Splash.qml
 %dir %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/splash/images
@@ -487,10 +457,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/org.kde.plasmashell.desktop
 %{_datadir}/dbus-1/services/org.kde.LogoutPrompt.service
 %dir %{_datadir}/kpackage/kcms
-%dir %{_datadir}/kpackage/kcms/kcm_translations
-%dir %{_datadir}/kpackage/kcms/kcm_translations/contents
-%dir %{_datadir}/kpackage/kcms/kcm_translations/contents/ui
-%{_datadir}/kpackage/kcms/kcm_translations/contents/ui/main.qml
 /etc/xdg/plasmanotifyrc
 %attr(755,root,root) %{_bindir}/kcolorschemeeditor
 %attr(755,root,root) %{_bindir}/kde-systemd-start-condition
@@ -712,7 +678,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kpackage/kcms/kcm_notifications/contents/ui/SourcesPage.qml
 %{_datadir}/kpackage/kcms/kcm_notifications/contents/ui/main.qml
 %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/components/VirtualKeyboard_wayland.qml
-%{_datadir}/qlogging-categories5/kcm_translations.categories
 %{_datadir}/qlogging-categories5/myproject.categories
 %{_datadir}/sddm/themes/breeze/components/VirtualKeyboard_wayland.qml
 %attr(755,root,root) %{_bindir}/plasma-interactiveconsole
@@ -750,13 +715,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_cursortheme.so
 %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_desktoptheme.so
 %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_fonts.so
-%{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_formats.so
 %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_icons.so
 %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_lookandfeel.so
 %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_nightcolor.so
 %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_notifications.so
 %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_style.so
-%{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_translations.so
 %{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_users.so
 %{_libdir}/qt5/plugins/plasma/kcms/systemsettings_qwidgets/kcm_fontinst.so
 %dir %{_libdir}/qt5/qml/org/kde/plasma/lookandfeel
@@ -770,22 +733,15 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kcm_autostart.desktop
 %{_desktopdir}/kcm_colors.desktop
 %{_desktopdir}/kcm_cursortheme.desktop
-%{_desktopdir}/kcm_desktoptheme.desktop
 %{_desktopdir}/kcm_fontinst.desktop
 %{_desktopdir}/kcm_fonts.desktop
-%{_desktopdir}/kcm_formats.desktop
 %{_desktopdir}/kcm_icons.desktop
 %{_desktopdir}/kcm_lookandfeel.desktop
 %{_desktopdir}/kcm_nightcolor.desktop
 %{_desktopdir}/kcm_notifications.desktop
 %{_desktopdir}/kcm_style.desktop
-%{_desktopdir}/kcm_translations.desktop
 %{_desktopdir}/kcm_users.desktop
 %{_desktopdir}/org.kde.plasmawindowed.desktop
-%dir %{_datadir}/kpackage/kcms/kcm_formats
-%dir %{_datadir}/kpackage/kcms/kcm_formats/contents
-%dir %{_datadir}/kpackage/kcms/kcm_formats/contents/ui
-%{_datadir}/kpackage/kcms/kcm_formats/contents/ui/main.qml
 %dir %{_datadir}/kpackage/kcms/kcm_icons
 %dir %{_datadir}/kpackage/kcms/kcm_icons/contents
 %dir %{_datadir}/kpackage/kcms/kcm_icons/contents/ui
@@ -801,7 +757,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kpackage/kcms/kcm_users/contents/ui/FingerprintProgressCircle.qml
 %{_datadir}/kpackage/kcms/kcm_users/contents/ui/UserDetailsPage.qml
 %{_datadir}/kpackage/kcms/kcm_users/contents/ui/main.qml
-%{_datadir}/kservices5/ServiceMenus/setaswallpaper.desktop
 %{_datadir}/kxmlgui5/kfontview/kfontviewpart.rc
 %{_datadir}/plasma/avatars
 %dir %{_datadir}/plasma/look-and-feel/org.kde.breeze.desktop/contents/systemdialog
@@ -828,6 +783,40 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/sddm/themes/breeze/components/animation
 %{_datadir}/sddm/themes/breeze/components/animation/RejectPasswordAnimation.qml
 %{_datadir}/sddm/themes/breeze/components/animation/RejectPasswordPathAnimation.qml
+
+%attr(755,root,root) %{_bindir}/plasma-localegen-helper
+%{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_feedback.so
+%{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_regionandlang.so
+%dir %{_libdir}/qt5/qml/org/kde/plasma/workspace/calendar
+%{_libdir}/qt5/qml/org/kde/plasma/workspace/calendar/CalendarToolbar.qml
+%{_libdir}/qt5/qml/org/kde/plasma/workspace/calendar/DayDelegate.qml
+%{_libdir}/qt5/qml/org/kde/plasma/workspace/calendar/DaysCalendar.qml
+%{_libdir}/qt5/qml/org/kde/plasma/workspace/calendar/InfiniteList.qml
+%{_libdir}/qt5/qml/org/kde/plasma/workspace/calendar/MonthMenu.qml
+%{_libdir}/qt5/qml/org/kde/plasma/workspace/calendar/MonthView.qml
+%{_libdir}/qt5/qml/org/kde/plasma/workspace/calendar/libcalendarplugin.so
+%{_libdir}/qt5/qml/org/kde/plasma/workspace/calendar/qmldir
+%{_libdir}/qt5/qml/org/kde/plasma/workspace/components/BadgeOverlay.qml
+%{_desktopdir}/kcm_feedback.desktop
+%{_desktopdir}/kcm_regionandlang.desktop
+%{_datadir}/config.kcfg/feedbacksettings.kcfg
+%{_datadir}/dbus-1/system-services/org.kde.localegenhelper.service
+%{_datadir}/dbus-1/system.d/org.kde.localegenhelper.conf
+%{_datadir}/kio/servicemenus/setaswallpaper.desktop
+%{_datadir}/kpackage/kcms/kcm_feedback/contents/ui/main.qml
+%{_datadir}/kpackage/kcms/kcm_regionandlang/contents/ui/AdvancedLanguageSelectPage.qml
+%{_datadir}/kpackage/kcms/kcm_regionandlang/contents/ui/main.qml
+%{_datadir}/plasma/nightcolor/worldmap.png
+%dir %{_datadir}/plasma/wallpapers/org.kde.image/contents/ui/mediacomponent
+%{_datadir}/plasma/wallpapers/org.kde.image/contents/ui/mediacomponent/AnimatedImageComponent.qml
+%{_datadir}/plasma/wallpapers/org.kde.image/contents/ui/mediacomponent/BaseMediaComponent.qml
+%{_datadir}/plasma/wallpapers/org.kde.image/contents/ui/mediacomponent/StaticImageComponent.qml
+%dir %{_datadir}/plasma/wallpapers/org.kde.slideshow/contents/ui/mediacomponent
+%{_datadir}/plasma/wallpapers/org.kde.slideshow/contents/ui/mediacomponent/AnimatedImageComponent.qml
+%{_datadir}/plasma/wallpapers/org.kde.slideshow/contents/ui/mediacomponent/BaseMediaComponent.qml
+%{_datadir}/plasma/wallpapers/org.kde.slideshow/contents/ui/mediacomponent/StaticImageComponent.qml
+%{_datadir}/polkit-1/actions/org.kde.localegenhelper.policy
+%{_datadir}/qlogging-categories5/kcm_regionandlang.categories
 
 
 %files devel
