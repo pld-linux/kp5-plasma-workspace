@@ -11,7 +11,7 @@
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
 Version:	5.26.0
-Release:	2
+Release:	3
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -803,9 +803,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/system-services/org.kde.localegenhelper.service
 %{_datadir}/dbus-1/system.d/org.kde.localegenhelper.conf
 %{_datadir}/kio/servicemenus/setaswallpaper.desktop
+%dir %{_datadir}/kpackage/kcms/kcm_feedback
+%dir %{_datadir}/kpackage/kcms/kcm_feedback/contents
+%dir %{_datadir}/kpackage/kcms/kcm_feedback/contents/ui
 %{_datadir}/kpackage/kcms/kcm_feedback/contents/ui/main.qml
+%dir %{_datadir}/kpackage/kcms/kcm_regionandlang
+%dir %{_datadir}/kpackage/kcms/kcm_regionandlang/contents
+%dir %{_datadir}/kpackage/kcms/kcm_regionandlang/contents/ui
 %{_datadir}/kpackage/kcms/kcm_regionandlang/contents/ui/AdvancedLanguageSelectPage.qml
 %{_datadir}/kpackage/kcms/kcm_regionandlang/contents/ui/main.qml
+%dir %{_datadir}/plasma/nightcolor
 %{_datadir}/plasma/nightcolor/worldmap.png
 %dir %{_datadir}/plasma/wallpapers/org.kde.image/contents/ui/mediacomponent
 %{_datadir}/plasma/wallpapers/org.kde.image/contents/ui/mediacomponent/AnimatedImageComponent.qml
