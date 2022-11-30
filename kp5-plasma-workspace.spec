@@ -11,7 +11,7 @@
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
 Version:	5.26.4
-Release:	2
+Release:	3
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -129,6 +129,9 @@ rm -rf $RPM_BUILD_ROOT
 %ninja_install -C build
 
 install -p -D %{SOURCE1} $RPM_BUILD_ROOT/etc/pam.d/kde
+
+# unsupported locale
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/tok
 
 %find_lang %{kpname} --all-name --with-kde
 
