@@ -4,18 +4,18 @@
 # TODO:
 #  * dbusmenu-qt5 , Support for notification area menus via the DBusMenu protocol , <https://launchpad.net/libdbusmenu-qt>
 #
-%define		kdeplasmaver	5.26.5
+%define		kdeplasmaver	5.27.0
 %define		qtver		5.15.2
 %define		kpname		plasma-workspace
 
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
-Version:	5.26.5
-Release:	2
+Version:	5.27.0
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	9b5ddbc03683da742ac0c03c821d9084
+# Source0-md5:	875d79bfa6766ce3d2aeef88dbee6292
 Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
@@ -283,7 +283,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libkfontinstui.so.5.*.*
 %ghost %{_libdir}/libnotificationmanager.so.1
 %{_libdir}/libnotificationmanager.so.5.*.*
-%{_libdir}/qt5/plugins/fontthumbnail.so
 %{_libdir}/qt5/plugins/kf5/kio/applications.so
 %{_libdir}/qt5/plugins/kf5/krunner/krunner_appstream.so
 %{_libdir}/qt5/plugins/kf5/krunner/krunner_bookmarksrunner.so
@@ -348,7 +347,6 @@ rm -rf $RPM_BUILD_ROOT
 %{systemduserunitdir}/plasma-workspace-wayland.target
 %{systemduserunitdir}/plasma-workspace-x11.target
 %{systemduserunitdir}/plasma-workspace.target
-#%{_libdir}/qt5/plugins/kcm_fontinst.so
 %{_libdir}/qt5/plugins/kf5/krunner/helprunner.so
 %dir %{_libdir}/qt5/plugins/kf5/krunner/kcms
 %{_libdir}/qt5/plugins/kf5/krunner/kcms/kcm_krunner_kill.so
@@ -394,6 +392,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/qml/org/kde/plasma/workspace/calendar/libcalendarplugin.so
 %{_libdir}/qt5/qml/org/kde/plasma/workspace/calendar/qmldir
 %{_libdir}/qt5/qml/org/kde/plasma/workspace/components/BadgeOverlay.qml
+%attr(755,root,root) %{_libdir}/kconf_update_bin/plasmashell-5.27-use-panel-thickness-in-default-group
+%{_libdir}/qt5/plugins/kf5/thumbcreator/fontthumbnail.so
+%{_libdir}/qt5/qml/org/kde/plasma/private/mediacontroller/libmediacontrollerplugin.so
+%{_libdir}/qt5/qml/org/kde/plasma/private/mediacontroller/qmldir
+%{_libdir}/qt5/qml/org/kde/plasma/workspace/calendar/MonthViewHeader.qml
+%{_libdir}/qt5/qml/org/kde/plasma/workspace/trianglemousefilter/libtrianglemousefilterplugin.so
+%{_libdir}/qt5/qml/org/kde/plasma/workspace/trianglemousefilter/qmldir
 
 %files data -f %{kpname}.lang
 %defattr(644,root,root,755)
@@ -710,7 +715,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kpackage/kcms/kcm_style/contents/ui/main.qml
 %{_datadir}/krunner/dbusplugins/plasma-runner-baloosearch.desktop
 %{_datadir}/kservices5/ServiceMenus/installfont.desktop
-%{_datadir}/kservices5/fontthumbnail.desktop
 %dir %{_datadir}/kxmlgui5/kfontview
 %{_datadir}/kxmlgui5/kfontview/kfontviewui.rc
 %{_datadir}/metainfo/org.kde.plasma.systemmonitor.appdata.xml
@@ -840,6 +844,42 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/qlogging-categories5/kcm_regionandlang.categories
 %{_desktopdir}/org.kde.plasmashell.desktop
 %{_datadir}/dbus-1/services/org.kde.LogoutPrompt.service
+
+%{_datadir}/config.kcfg/launchfeedbacksettings.kcfg
+%{_datadir}/kconf_update/plasmashell-5.27-use-panel-thickness-in-default-group.upd
+%{_datadir}/kpackage/kcms/kcm_cursortheme/contents/ui/LaunchFeedbackDialog.qml
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/Debouncer.qml
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/PicturesSheet.qml
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/base.svg
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/base.svg.license
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/left-index-finger.svg
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/left-index-finger.svg.license
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/left-little-finger.svg
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/left-little-finger.svg.license
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/left-middle-finger.svg
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/left-middle-finger.svg.license
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/left-ring-finger.svg
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/left-ring-finger.svg.license
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/left-thumb.svg
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/left-thumb.svg.license
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/palm.svg
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/palm.svg.license
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/right-index-finger.svg
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/right-index-finger.svg.license
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/right-little-finger.svg
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/right-little-finger.svg.license
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/right-middle-finger.svg
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/right-middle-finger.svg.license
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/right-ring-finger.svg
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/right-ring-finger.svg.license
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/right-thumb.svg
+%{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/right-thumb.svg.license
+%{_datadir}/plasma/wallpapers/org.kde.image/contents/ui/ImageStackView.qml
+%{_datadir}/plasma/wallpapers/org.kde.image/contents/ui/mediacomponent/BlurComponent.qml
+%{_datadir}/plasma/wallpapers/org.kde.slideshow/contents/ui/ImageStackView.qml
+%{_datadir}/plasma/wallpapers/org.kde.slideshow/contents/ui/mediacomponent/BlurComponent.qml
+%{zsh_compdir}/_plasmashell
+
 
 %files devel
 %defattr(644,root,root,755)
