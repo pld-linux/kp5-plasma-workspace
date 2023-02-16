@@ -11,7 +11,7 @@
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
 Version:	5.27.0
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -394,9 +394,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt5/qml/org/kde/plasma/workspace/components/BadgeOverlay.qml
 %attr(755,root,root) %{_libdir}/kconf_update_bin/plasmashell-5.27-use-panel-thickness-in-default-group
 %{_libdir}/qt5/plugins/kf5/thumbcreator/fontthumbnail.so
+%dir %{_libdir}/qt5/qml/org/kde/plasma/private/mediacontroller
 %{_libdir}/qt5/qml/org/kde/plasma/private/mediacontroller/libmediacontrollerplugin.so
 %{_libdir}/qt5/qml/org/kde/plasma/private/mediacontroller/qmldir
 %{_libdir}/qt5/qml/org/kde/plasma/workspace/calendar/MonthViewHeader.qml
+%dir %{_libdir}/qt5/qml/org/kde/plasma/workspace/trianglemousefilter
 %{_libdir}/qt5/qml/org/kde/plasma/workspace/trianglemousefilter/libtrianglemousefilterplugin.so
 %{_libdir}/qt5/qml/org/kde/plasma/workspace/trianglemousefilter/qmldir
 
@@ -850,6 +852,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kpackage/kcms/kcm_cursortheme/contents/ui/LaunchFeedbackDialog.qml
 %{_datadir}/kpackage/kcms/kcm_users/contents/ui/Debouncer.qml
 %{_datadir}/kpackage/kcms/kcm_users/contents/ui/PicturesSheet.qml
+%dir %{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images
 %{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/base.svg
 %{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/base.svg.license
 %{_datadir}/kpackage/kcms/kcm_users/contents/ui/hand-images/left-index-finger.svg
