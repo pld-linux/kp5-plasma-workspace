@@ -6,6 +6,7 @@
 #
 %define		kdeplasmaver	5.27.0
 %define		qtver		5.15.2
+%define		kf5ver		5.102.0
 %define		kpname		plasma-workspace
 
 Summary:	KDE Plasma Workspace
@@ -20,59 +21,98 @@ Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
 URL:		http://www.kde.org/
-BuildRequires:	AppStream-qt-devel
-BuildRequires:	NetworkManager-devel >= 1.4.0
+BuildRequires:	AppStream-qt-devel >= 0.10.6
+BuildRequires:	Qt5Concurrent-devel >= %{qtver}
 BuildRequires:	Qt5Core-devel >= %{qtver}
+BuildRequires:	Qt5Network-devel >= %{qtver}
 BuildRequires:	Qt5PrintSupport-devel >= %{qtver}
-BuildRequires:	cmake >= 2.8.12
+BuildRequires:	Qt5Quick-devel >= %{qtver}
+BuildRequires:	Qt5Sql-devel >= %{qtver}
+BuildRequires:	Qt5Svg-devel >= %{qtver}
+BuildRequires:	Qt5Test-devel >= %{qtver}
+BuildRequires:	Qt5WaylandClient-devel >= %{qtver}
+BuildRequires:	Qt5Widgets-devel >= %{qtver}
+BuildRequires:	Qt5X11Extras-devel >= %{qtver}
+BuildRequires:	Qt5XkbCommonSupport-devel >= %{qtver}
+BuildRequires:	cmake >= 3.22
+BuildRequires:	fontconfig-devel
 BuildRequires:	gpsd-devel
+BuildRequires:	iso-codes
 BuildRequires:	ka5-kio-extras-devel
+BuildRequires:	ka5-libkexiv2-devel
 BuildRequires:	kf5-baloo-devel
-BuildRequires:	kf5-extra-cmake-modules >= 5.50
-BuildRequires:	kf5-kactivities-devel
-BuildRequires:	kf5-kactivities-stats-devel
-BuildRequires:	kf5-kcmutils-devel
-BuildRequires:	kf5-kcrash-devel
-BuildRequires:	kf5-kdbusaddons-devel
-BuildRequires:	kf5-kdeclarative-devel
+BuildRequires:	kf5-extra-cmake-modules >= %{kf5ver}
+BuildRequires:	kf5-kactivities-devel >= %{kf5ver}
+BuildRequires:	kf5-kactivities-stats-devel >= %{kf5ver}
+BuildRequires:	kf5-karchive-devel >= %{kf5ver}
+BuildRequires:	kf5-kauth-devel >= %{kf5ver}
+BuildRequires:	kf5-kcmutils-devel >= %{kf5ver}
+BuildRequires:	kf5-kcoreaddons-devel >= %{kf5ver}
+BuildRequires:	kf5-kcrash-devel >= %{kf5ver}
+BuildRequires:	kf5-kdbusaddons-devel >= %{kf5ver}
+BuildRequires:	kf5-kdeclarative-devel >= %{kf5ver}
 BuildRequires:	kf5-kded-devel
-BuildRequires:	kf5-kdelibs4support-devel
-BuildRequires:	kf5-kdesu-devel
-BuildRequires:	kf5-kdoctools-devel
-BuildRequires:	kf5-kglobalaccel-devel
+BuildRequires:	kf5-kdoctools-devel >= %{kf5ver}
+BuildRequires:	kf5-kglobalaccel-devel >= %{kf5ver}
+BuildRequires:	kf5-kguiaddons-devel >= %{kf5ver}
 BuildRequires:	kf5-kholidays-devel
-BuildRequires:	kf5-kidletime-devel
-BuildRequires:	kf5-kjsembed-devel
-BuildRequires:	kf5-knewstuff-devel
-BuildRequires:	kf5-knotifyconfig-devel
-BuildRequires:	kf5-kpackage-devel
-BuildRequires:	kf5-kpeople-devel
-BuildRequires:	kf5-kquickcharts-devel
-BuildRequires:	kf5-krunner-devel
-BuildRequires:	kf5-ktexteditor-devel
-BuildRequires:	kf5-ktextwidgets-devel
-BuildRequires:	kf5-kwallet-devel
-BuildRequires:	kf5-kxmlrpcclient-devel
-BuildRequires:	kf5-networkmanager-qt-devel
-BuildRequires:	kf5-plasma-framework-devel
-BuildRequires:	kf5-prison-devel
+BuildRequires:	kf5-ki18n-devel >= %{kf5ver}
+BuildRequires:	kf5-kiconthemes-devel >= %{kf5ver}
+BuildRequires:	kf5-kidletime-devel >= %{kf5ver}
+BuildRequires:	kf5-kio-devel >= %{kf5ver}
+BuildRequires:	kf5-kirigami2-devel >= %{kf5ver}
+BuildRequires:	kf5-kitemmodels-devel >= %{kf5ver}
+BuildRequires:	kf5-knewstuff-devel >= %{kf5ver}
+BuildRequires:	kf5-knotifications-devel >= %{kf5ver}
+BuildRequires:	kf5-knotifyconfig-devel >= %{kf5ver}
+BuildRequires:	kf5-kpackage-devel >= %{kf5ver}
+BuildRequires:	kf5-kpeople-devel >= %{kf5ver}
+BuildRequires:	kf5-kquickcharts-devel >= %{kf5ver}
+BuildRequires:	kf5-krunner-devel >= %{kf5ver}
+BuildRequires:	kf5-ktexteditor-devel >= %{kf5ver}
+BuildRequires:	kf5-ktextwidgets-devel >= %{kf5ver}
+BuildRequires:	kf5-kunitconversion-devel >= %{kf5ver}
+BuildRequires:	kf5-kwallet-devel >= %{kf5ver}
+BuildRequires:	kf5-kwayland-devel >= %{kf5ver}
+BuildRequires:	kf5-networkmanager-qt-devel >= %{kf5ver}
+BuildRequires:	kf5-plasma-framework-devel >= %{kf5ver}
+BuildRequires:	kf5-plasma-wayland-protocols-devel >= 1.6
+BuildRequires:	kf5-prison-devel >= %{kf5ver}
+BuildRequires:	kp5-breeze-devel >= %{kdeplasmaver}
 BuildRequires:	kp5-kpipewire-devel >= %{kdeplasmaver}
-BuildRequires:	kp5-kscreenlocker-devel >= %{kdeplasmaver}
+BuildRequires:	kp5-kscreenlocker-devel >= 5.13.80
 BuildRequires:	kp5-kwin-devel >= %{kdeplasmaver}
+BuildRequires:	kp5-layer-shell-qt-devel >= %{kdeplasmaver}
 BuildRequires:	kp5-libkscreen-devel >= %{kdeplasmaver}
 BuildRequires:	kp5-libksysguard-devel >= %{kdeplasmaver}
-BuildRequires:	libdbusmenu-qt5-devel
-BuildRequires:	libqalculate-devel >= 4.3.0
-BuildRequires:	mpfr-devel
+BuildRequires:	kuserfeedback-devel
+BuildRequires:	libdrm-devel
+BuildRequires:	libicu-devel
+BuildRequires:	libqalculate-devel > 2.0
+BuildRequires:	libstdc++-devel >= 6:5
+BuildRequires:	libxcb-devel
 BuildRequires:	ninja
-BuildRequires:	pam-devel
-BuildRequires:	phonon-qt5-devel
-BuildRequires:	rpmbuild(macros) >= 1.164
+BuildRequires:	phonon-qt5-devel >= 4.6.60
+BuildRequires:	pipewire-devel >= 0.3
+BuildRequires:	pkgconfig
+BuildRequires:	polkit-qt5-1-devel
+BuildRequires:	rpm-build >= 4.6
+BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	wayland-devel
+BuildRequires:	wayland-protocols >= 1.31
+BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libSM-devel
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXau-devel
 BuildRequires:	xorg-lib-libXcursor-devel
+BuildRequires:	xorg-lib-libXfixes-devel
 BuildRequires:	xorg-lib-libXft-devel
+BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xorg-lib-libXtst-devel
+BuildRequires:	xorg-lib-libxkbcommon-devel
 BuildRequires:	xz
+BuildRequires:	zlib-devel
 Requires:	kp5-plasma-workspace-data = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
