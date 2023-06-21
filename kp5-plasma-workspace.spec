@@ -4,19 +4,19 @@
 # TODO:
 #  * dbusmenu-qt5 , Support for notification area menus via the DBusMenu protocol , <https://launchpad.net/libdbusmenu-qt>
 #
-%define		kdeplasmaver	5.27.5
+%define		kdeplasmaver	5.27.6
 %define		qtver		5.15.2
 %define		kf5ver		5.102.0
 %define		kpname		plasma-workspace
 
 Summary:	KDE Plasma Workspace
 Name:		kp5-%{kpname}
-Version:	5.27.5
-Release:	3
+Version:	5.27.6
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	6d8eebad15cca79e694360ffddb06ac0
+# Source0-md5:	22cf771b1c730e0b29bc5b79f9f8691d
 Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
