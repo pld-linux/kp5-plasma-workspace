@@ -19,8 +19,6 @@ Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
 # Source0-md5:	ae751485c237143987f987191064ddfd
 Source1:	kde.pam
-Patch0:		kp5-plasma-workspace-absolute-path.patch
-Patch1:		kp5-plasma-workspace-scripts.patch
 URL:		https://kde.org/
 BuildRequires:	AppStream-qt5-devel >= 1.0.2
 BuildRequires:	NetworkManager-devel >= 1.4
@@ -153,8 +151,6 @@ Pliki nagłówkowe dla programistów używających %{kpname}.
 
 %prep
 %setup -q -n %{kpname}-%{version}
-#%%patch0 -p1
-#%%patch1 -p1
 
 %build
 %cmake -B build \
