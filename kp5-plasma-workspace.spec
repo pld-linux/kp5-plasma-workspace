@@ -10,6 +10,7 @@
 %define		kpname		plasma-workspace
 
 Summary:	KDE Plasma Workspace
+Summary(pl.UTF-8):	Środowisko KDE Plasma
 Name:		kp5-%{kpname}
 Version:	5.27.11
 Release:	2
@@ -122,6 +123,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 KDE Plasma Workspace.
+
+%description -l pl.UTF-8
+Środowisko KDE Plasma.
 
 %package data
 Summary:	Data files for %{kpname}
