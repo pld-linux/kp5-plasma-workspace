@@ -92,7 +92,7 @@ BuildRequires:	kuserfeedback-devel
 BuildRequires:	libdrm-devel
 BuildRequires:	libicu-devel
 BuildRequires:	libqalculate-devel > 2.0
-BuildRequires:	libstdc++-devel >= 6:5
+BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	libxcb-devel
 BuildRequires:	ninja
 BuildRequires:	phonon-qt5-devel >= 4.6.60
@@ -150,6 +150,7 @@ Requires:	Qt5Gui-devel >= %{qtver}
 Requires:	Qt5Quick-devel >= %{qtver}
 Requires:	kf5-kitemmodels-devel >= %{kf5ver}
 Requires:	kf5-plasma-framework-devel >= %{kf5ver}
+Requires:	libstdc++-devel >= 6:7
 
 %description devel
 Header files for %{kpname} development.
