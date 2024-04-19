@@ -22,6 +22,7 @@ Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
 URL:		http://www.kde.org/
 BuildRequires:	AppStream-qt5-devel >= 1.0.2
+BuildRequires:	NetworkManager-devel >= 1.4
 BuildRequires:	Qt5Concurrent-devel >= %{qtver}
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Network-devel >= %{qtver}
@@ -101,6 +102,7 @@ BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	wayland-devel
 BuildRequires:	wayland-protocols >= 1.31
+BuildRequires:	xcb-util-image-devel
 BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libX11-devel
@@ -322,7 +324,8 @@ rm -rf $RPM_BUILD_ROOT
 %ghost %{_libdir}/libnotificationmanager.so.1
 %{_libdir}/libnotificationmanager.so.5.*.*
 %{_libdir}/qt5/plugins/kf5/kio/applications.so
-%{_libdir}/qt5/plugins/kf5/krunner/krunner_appstream.so
+# AppStream 0.x is required to build this
+#%{_libdir}/qt5/plugins/kf5/krunner/krunner_appstream.so
 %{_libdir}/qt5/plugins/kf5/krunner/krunner_bookmarksrunner.so
 %{_libdir}/qt5/plugins/kf5/krunner/krunner_kill.so
 %{_libdir}/qt5/plugins/kf5/krunner/krunner_placesrunner.so
