@@ -21,7 +21,7 @@ Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{vers
 Source1:	kde.pam
 Patch0:		kp5-plasma-workspace-absolute-path.patch
 Patch1:		kp5-plasma-workspace-scripts.patch
-URL:		http://www.kde.org/
+URL:		https://kde.org/
 BuildRequires:	AppStream-qt5-devel >= 1.0.2
 BuildRequires:	NetworkManager-devel >= 1.4
 BuildRequires:	Qt5Concurrent-devel >= %{qtver}
