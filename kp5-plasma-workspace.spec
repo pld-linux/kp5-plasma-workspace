@@ -24,6 +24,7 @@ BuildRequires:	AppStream-qt5-devel >= 1.0.2
 BuildRequires:	NetworkManager-devel >= 1.4
 BuildRequires:	Qt5Concurrent-devel >= %{qtver}
 BuildRequires:	Qt5Core-devel >= %{qtver}
+BuildRequires:	Qt5Gui-devel >= %{qtver}
 BuildRequires:	Qt5Network-devel >= %{qtver}
 BuildRequires:	Qt5PrintSupport-devel >= %{qtver}
 BuildRequires:	Qt5Quick-devel >= %{qtver}
@@ -142,6 +143,11 @@ Summary:	Header files for %{kpname} development
 Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kpname}
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	Qt5Core-devel >= %{qtver}
+Requires:	Qt5Gui-devel >= %{qtver}
+Requires:	Qt5Quick-devel >= %{qtver}
+Requires:	kf5-kitemmodels-devel >= %{kf5ver}
+Requires:	kf5-plasma-framework-devel >= %{kf5ver}
 
 %description devel
 Header files for %{kpname} development.
