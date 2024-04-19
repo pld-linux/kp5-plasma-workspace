@@ -3,6 +3,7 @@
 %bcond_with	tests		# build with tests
 # TODO:
 #  * dbusmenu-qt5 , Support for notification area menus via the DBusMenu protocol , <https://launchpad.net/libdbusmenu-qt>
+#  * Could NOT find AppMenuGtkModule (missing: AppMenuGtk3Module_LIBRARY AppMenuGtk2Module_LIBRARY)
 #
 %define		kdeplasmaver	5.27.11
 %define		qtver		5.15.2
@@ -19,6 +20,7 @@ Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
 # Source0-md5:	ae751485c237143987f987191064ddfd
 Source1:	kde.pam
+Patch0:		plasma-workspace-appstream1.patch
 URL:		https://kde.org/
 BuildRequires:	AppStream-qt5-devel >= 1.0.2
 BuildRequires:	NetworkManager-devel >= 1.4
@@ -157,6 +159,7 @@ Pliki nagłówkowe dla programistów używających %{kpname}.
 
 %prep
 %setup -q -n %{kpname}-%{version}
+%patch0 -p1
 
 %build
 %cmake -B build \
@@ -333,8 +336,7 @@ rm -rf $RPM_BUILD_ROOT
 %ghost %{_libdir}/libnotificationmanager.so.1
 %{_libdir}/libnotificationmanager.so.5.*.*
 %{_libdir}/qt5/plugins/kf5/kio/applications.so
-# AppStream 0.x is required to build this
-#%{_libdir}/qt5/plugins/kf5/krunner/krunner_appstream.so
+%{_libdir}/qt5/plugins/kf5/krunner/krunner_appstream.so
 %{_libdir}/qt5/plugins/kf5/krunner/krunner_bookmarksrunner.so
 %{_libdir}/qt5/plugins/kf5/krunner/krunner_kill.so
 %{_libdir}/qt5/plugins/kf5/krunner/krunner_placesrunner.so

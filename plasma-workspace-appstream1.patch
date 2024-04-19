@@ -1,0 +1,115 @@
+--- plasma-workspace-5.27.11/CMakeLists.txt.orig	2024-03-06 12:26:44.000000000 +0100
++++ plasma-workspace-5.27.11/CMakeLists.txt	2024-04-19 19:10:24.300471629 +0200
+@@ -183,12 +183,12 @@ if(FONTCONFIG_FOUND)
+   find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS PrintSupport)
+ endif()
+ 
+-find_package(AppStreamQt 0.10.6)
+-set_package_properties(AppStreamQt PROPERTIES DESCRIPTION "Access metadata for listing available software"
++find_package(AppStreamQt5 1.0.0)
++set_package_properties(AppStreamQt5 PROPERTIES DESCRIPTION "Access metadata for listing available software"
+                        URL "https://www.freedesktop.org/wiki/Distributions/AppStream/"
+                        TYPE OPTIONAL)
+ 
+-if(${AppStreamQt_FOUND})
++if(${AppStreamQt5_FOUND})
+     set(HAVE_APPSTREAMQT true)
+ endif()
+ 
+--- plasma-workspace-5.27.11/runners/CMakeLists.txt.orig	2024-03-06 12:26:45.000000000 +0100
++++ plasma-workspace-5.27.11/runners/CMakeLists.txt	2024-04-19 19:48:24.908129658 +0200
+@@ -14,7 +14,7 @@ add_subdirectory(shell)
+ add_subdirectory(webshortcuts)
+ add_subdirectory(windowedwidgets)
+ 
+-if(AppStreamQt_FOUND)
++if(AppStreamQt5_FOUND)
+     add_subdirectory(appstream)
+ endif()
+ 
+--- plasma-workspace-5.27.11/applets/kicker/plugin/actionlist.cpp.orig	2024-03-06 12:26:45.000000000 +0100
++++ plasma-workspace-5.27.11/applets/kicker/plugin/actionlist.cpp	2024-04-19 19:30:46.728147966 +0200
+@@ -32,7 +32,7 @@
+ #include "containmentinterface.h"
+ 
+ #ifdef HAVE_APPSTREAMQT
+-#include <AppStreamQt/pool.h>
++#include <AppStreamQt5/pool.h>
+ #endif
+ 
+ namespace KAStats = KActivities::Stats;
+@@ -448,10 +448,10 @@ bool handleAppstreamActions(const QStrin
+ 
+     const auto components =
+         appstreamPool->componentsByLaunchable(AppStream::Launchable::KindDesktopId, service->desktopEntryName() + QLatin1String(".desktop"));
+-    if (components.empty()) {
++    if (components.isEmpty()) {
+         return false;
+     }
+-    return QDesktopServices::openUrl(QUrl(QLatin1String("appstream://") + components[0].id()));
++    return QDesktopServices::openUrl(QUrl(QLatin1String("appstream://") + (*components.begin()).id()));
+ #else
+     return false;
+ #endif
+--- plasma-workspace-5.27.11/runners/appstream/appstreamrunner.h.orig	2024-03-06 12:26:45.000000000 +0100
++++ plasma-workspace-5.27.11/runners/appstream/appstreamrunner.h	2024-04-19 20:14:39.284693907 +0200
+@@ -6,7 +6,7 @@
+ 
+ #pragma once
+ 
+-#include <AppStreamQt/pool.h>
++#include <AppStreamQt5/pool.h>
+ #include <KRunner/AbstractRunner>
+ #include <QMutex>
+ 
+@@ -22,7 +22,7 @@ public:
+     void run(const Plasma::RunnerContext &context, const Plasma::QueryMatch &action) override;
+ 
+ private:
+-    QList<AppStream::Component> findComponentsByString(const QString &query);
++    AppStream::ComponentBox findComponentsByString(const QString &query);
+ 
+     AppStream::Pool m_db;
+     QMutex m_appstreamMutex;
+--- plasma-workspace-5.27.11/runners/appstream/appstreamrunner.cpp.orig	2024-03-06 12:26:45.000000000 +0100
++++ plasma-workspace-5.27.11/runners/appstream/appstreamrunner.cpp	2024-04-19 20:24:28.295058106 +0200
+@@ -6,7 +6,7 @@
+ 
+ #include "appstreamrunner.h"
+ 
+-#include <AppStreamQt/icon.h>
++#include <AppStreamQt5/icon.h>
+ 
+ #include <QDebug>
+ #include <QDesktopServices>
+@@ -90,9 +90,12 @@ void InstallerRunner::match(Plasma::Runn
+     }
+ 
+     std::set<QString> uniqueIds;
+-    const auto components = findComponentsByString(context.query()).mid(0, 3);
++    const auto components = findComponentsByString(context.query());
+ 
++    int idx = 0;
+     for (const AppStream::Component &component : components) {
++        if (++idx > 3)
++            break;
+         if (component.kind() != AppStream::Component::KindDesktopApp)
+             continue;
+ 
+@@ -145,13 +148,14 @@ void InstallerRunner::run(const Plasma::
+         qCWarning(RUNNER_APPSTREAM) << "couldn't open" << appstreamUrl;
+ }
+ 
+-QList<AppStream::Component> InstallerRunner::findComponentsByString(const QString &query)
++AppStream::ComponentBox InstallerRunner::findComponentsByString(const QString &query)
+ {
+     QMutexLocker locker(&m_appstreamMutex);
+     QString error;
+     static bool warnedOnce = false;
+-    static bool opened = m_db.load(&error);
++    static bool opened = m_db.load();
+     if (!opened) {
++        error = m_db.lastError();
+         if (warnedOnce) {
+             qCDebug(RUNNER_APPSTREAM) << "Had errors when loading AppStream metadata pool" << error;
+         } else {
