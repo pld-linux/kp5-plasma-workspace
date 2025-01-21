@@ -5,7 +5,7 @@
 #  * dbusmenu-qt5 , Support for notification area menus via the DBusMenu protocol , <https://launchpad.net/libdbusmenu-qt>
 #  * Could NOT find AppMenuGtkModule (missing: AppMenuGtk3Module_LIBRARY AppMenuGtk2Module_LIBRARY)
 #
-%define		kdeplasmaver	5.27.11
+%define		kdeplasmaver	5.27.12
 %define		qtver		5.15.2
 %define		kf5ver		5.102.0
 %define		kpname		plasma-workspace
@@ -13,12 +13,12 @@
 Summary:	KDE Plasma Workspace
 Summary(pl.UTF-8):	Środowisko KDE Plasma
 Name:		kp5-%{kpname}
-Version:	5.27.11
-Release:	6
+Version:	5.27.12
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	ae751485c237143987f987191064ddfd
+# Source0-md5:	ae7cb52ab11a032fb4ba29539d1d0499
 Source1:	kde.pam
 Patch0:		plasma-workspace-appstream1.patch
 URL:		https://kde.org/
@@ -160,7 +160,7 @@ Pliki nagłówkowe dla programistów używających %{kpname}.
 
 %prep
 %setup -q -n %{kpname}-%{version}
-%patch0 -p1
+%patch -P 0 -p1
 
 %build
 %cmake -B build \
