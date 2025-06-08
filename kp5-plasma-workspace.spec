@@ -79,7 +79,6 @@ BuildRequires:	kf5-kwallet-devel >= %{kf5ver}
 BuildRequires:	kf5-kwayland-devel >= %{kf5ver}
 BuildRequires:	kf5-networkmanager-qt-devel >= %{kf5ver}
 BuildRequires:	kf5-plasma-framework-devel >= %{kf5ver}
-BuildRequires:	kf5-plasma-wayland-protocols-devel >= 1.6
 BuildRequires:	kf5-prison-devel >= %{kf5ver}
 BuildRequires:	kp5-breeze-devel >= %{kdeplasmaver}
 BuildRequires:	kp5-kpipewire-devel >= %{kdeplasmaver}
@@ -98,6 +97,7 @@ BuildRequires:	ninja
 BuildRequires:	phonon-qt5-devel >= 4.6.60
 BuildRequires:	pipewire-devel >= 0.3
 BuildRequires:	pkgconfig
+BuildRequires:	plasma-wayland-protocols-devel >= 1.6
 BuildRequires:	polkit-qt5-1-devel
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
