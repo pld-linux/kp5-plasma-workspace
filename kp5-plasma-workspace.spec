@@ -3,11 +3,10 @@
 %bcond_with	tests		# build with tests
 # TODO:
 #  * dbusmenu-qt5 , Support for notification area menus via the DBusMenu protocol , <https://launchpad.net/libdbusmenu-qt>
-#  * Could NOT find AppMenuGtkModule (missing: AppMenuGtk3Module_LIBRARY AppMenuGtk2Module_LIBRARY)
 #
-%define		kdeplasmaver	5.27.12
-%define		qtver		5.15.2
-%define		kf5ver		5.102.0
+%define		kf_ver		5.102.0
+%define		kp_ver		5.27.12
+%define		qt_ver		5.15.2
 %define		kpname		plasma-workspace
 
 Summary:	KDE Plasma Workspace
@@ -17,76 +16,89 @@ Version:	5.27.12
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
-Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
+Source0:	https://download.kde.org/stable/plasma/%{version}/%{kpname}-%{version}.tar.xz
 # Source0-md5:	ae7cb52ab11a032fb4ba29539d1d0499
 Source1:	kde.pam
 Patch0:		plasma-workspace-appstream1.patch
 URL:		https://kde.org/
 BuildRequires:	AppStream-qt5-devel >= 1.0.2
 BuildRequires:	NetworkManager-devel >= 1.4
-BuildRequires:	Qt5Concurrent-devel >= %{qtver}
-BuildRequires:	Qt5Core-devel >= %{qtver}
-BuildRequires:	Qt5Gui-devel >= %{qtver}
-BuildRequires:	Qt5Network-devel >= %{qtver}
-BuildRequires:	Qt5PrintSupport-devel >= %{qtver}
-BuildRequires:	Qt5Quick-devel >= %{qtver}
-BuildRequires:	Qt5Sql-devel >= %{qtver}
-BuildRequires:	Qt5Svg-devel >= %{qtver}
-BuildRequires:	Qt5Test-devel >= %{qtver}
-BuildRequires:	Qt5WaylandClient-devel >= %{qtver}
-BuildRequires:	Qt5Widgets-devel >= %{qtver}
-BuildRequires:	Qt5X11Extras-devel >= %{qtver}
-BuildRequires:	Qt5XkbCommonSupport-devel >= %{qtver}
+# only with UBUNTU_PACKAGEKIT
+#BuildRequires:	PackageKit-qt5-devel
+BuildRequires:	Qt5Concurrent-devel >= %{qt_ver}
+BuildRequires:	Qt5Core-devel >= %{qt_ver}
+BuildRequires:	Qt5DBus-devel >= %{qt_ver}
+BuildRequires:	Qt5Gui-devel >= %{qt_ver}
+BuildRequires:	Qt5Network-devel >= %{qt_ver}
+BuildRequires:	Qt5PrintSupport-devel >= %{qt_ver}
+BuildRequires:	Qt5Qml-devel >= %{qt_ver}
+BuildRequires:	Qt5Quick-devel >= %{qt_ver}
+BuildRequires:	Qt5Sql-devel >= %{qt_ver}
+BuildRequires:	Qt5Svg-devel >= %{qt_ver}
+BuildRequires:	Qt5Test-devel >= %{qt_ver}
+BuildRequires:	Qt5WaylandClient-devel >= %{qt_ver}
+BuildRequires:	Qt5Widgets-devel >= %{qt_ver}
+BuildRequires:	Qt5X11Extras-devel >= %{qt_ver}
+BuildRequires:	Qt5XkbCommonSupport-devel >= %{qt_ver}
 BuildRequires:	cmake >= 3.22
 BuildRequires:	fontconfig-devel
+BuildRequires:	gettext-tools
 BuildRequires:	gpsd-devel
 BuildRequires:	iso-codes
-BuildRequires:	ka5-kio-extras-devel
 BuildRequires:	ka5-libkexiv2-devel
 BuildRequires:	kf5-baloo-devel
-BuildRequires:	kf5-extra-cmake-modules >= %{kf5ver}
-BuildRequires:	kf5-kactivities-devel >= %{kf5ver}
-BuildRequires:	kf5-kactivities-stats-devel >= %{kf5ver}
-BuildRequires:	kf5-karchive-devel >= %{kf5ver}
-BuildRequires:	kf5-kauth-devel >= %{kf5ver}
-BuildRequires:	kf5-kcmutils-devel >= %{kf5ver}
-BuildRequires:	kf5-kcoreaddons-devel >= %{kf5ver}
-BuildRequires:	kf5-kcrash-devel >= %{kf5ver}
-BuildRequires:	kf5-kdbusaddons-devel >= %{kf5ver}
-BuildRequires:	kf5-kdeclarative-devel >= %{kf5ver}
+BuildRequires:	kf5-extra-cmake-modules >= %{kf_ver}
+BuildRequires:	kf5-kactivities-devel >= %{kf_ver}
+BuildRequires:	kf5-kactivities-stats-devel >= %{kf_ver}
+BuildRequires:	kf5-karchive-devel >= %{kf_ver}
+BuildRequires:	kf5-kauth-devel >= %{kf_ver}
+BuildRequires:	kf5-kbookmarks-devel >= %{kf_ver}
+BuildRequires:	kf5-kcmutils-devel >= %{kf_ver}
+BuildRequires:	kf5-kcompletion-devel >= %{kf_ver}
+BuildRequires:	kf5-kconfig-devel >= %{kf_ver}
+BuildRequires:	kf5-kconfigwidgets-devel >= %{kf_ver}
+BuildRequires:	kf5-kcoreaddons-devel >= %{kf_ver}
+BuildRequires:	kf5-kcrash-devel >= %{kf_ver}
+BuildRequires:	kf5-kdbusaddons-devel >= %{kf_ver}
+BuildRequires:	kf5-kdeclarative-devel >= %{kf_ver}
 BuildRequires:	kf5-kded-devel
-BuildRequires:	kf5-kdoctools-devel >= %{kf5ver}
-BuildRequires:	kf5-kglobalaccel-devel >= %{kf5ver}
-BuildRequires:	kf5-kguiaddons-devel >= %{kf5ver}
+BuildRequires:	kf5-kdoctools-devel >= %{kf_ver}
+BuildRequires:	kf5-kglobalaccel-devel >= %{kf_ver}
+BuildRequires:	kf5-kguiaddons-devel >= %{kf_ver}
 BuildRequires:	kf5-kholidays-devel
-BuildRequires:	kf5-ki18n-devel >= %{kf5ver}
-BuildRequires:	kf5-kiconthemes-devel >= %{kf5ver}
-BuildRequires:	kf5-kidletime-devel >= %{kf5ver}
-BuildRequires:	kf5-kio-devel >= %{kf5ver}
-BuildRequires:	kf5-kirigami2-devel >= %{kf5ver}
-BuildRequires:	kf5-kitemmodels-devel >= %{kf5ver}
-BuildRequires:	kf5-knewstuff-devel >= %{kf5ver}
-BuildRequires:	kf5-knotifications-devel >= %{kf5ver}
-BuildRequires:	kf5-knotifyconfig-devel >= %{kf5ver}
-BuildRequires:	kf5-kpackage-devel >= %{kf5ver}
-BuildRequires:	kf5-kpeople-devel >= %{kf5ver}
-BuildRequires:	kf5-kquickcharts-devel >= %{kf5ver}
-BuildRequires:	kf5-krunner-devel >= %{kf5ver}
-BuildRequires:	kf5-ktexteditor-devel >= %{kf5ver}
-BuildRequires:	kf5-ktextwidgets-devel >= %{kf5ver}
-BuildRequires:	kf5-kunitconversion-devel >= %{kf5ver}
-BuildRequires:	kf5-kwallet-devel >= %{kf5ver}
-BuildRequires:	kf5-kwayland-devel >= %{kf5ver}
-BuildRequires:	kf5-networkmanager-qt-devel >= %{kf5ver}
-BuildRequires:	kf5-plasma-framework-devel >= %{kf5ver}
-BuildRequires:	kf5-prison-devel >= %{kf5ver}
-BuildRequires:	kp5-breeze-devel >= %{kdeplasmaver}
-BuildRequires:	kp5-kpipewire-devel >= %{kdeplasmaver}
+BuildRequires:	kf5-ki18n-devel >= %{kf_ver}
+BuildRequires:	kf5-kiconthemes-devel >= %{kf_ver}
+BuildRequires:	kf5-kidletime-devel >= %{kf_ver}
+BuildRequires:	kf5-kio-devel >= %{kf_ver}
+BuildRequires:	kf5-kitemmodels-devel >= %{kf_ver}
+BuildRequires:	kf5-kjobwidgets-devel >= %{kf_ver}
+BuildRequires:	kf5-knewstuff-devel >= %{kf_ver}
+BuildRequires:	kf5-knotifications-devel >= %{kf_ver}
+BuildRequires:	kf5-knotifyconfig-devel >= %{kf_ver}
+BuildRequires:	kf5-kpackage-devel >= %{kf_ver}
+BuildRequires:	kf5-kparts-devel >= %{kf_ver}
+BuildRequires:	kf5-kpeople-devel >= %{kf_ver}
+BuildRequires:	kf5-krunner-devel >= %{kf_ver}
+BuildRequires:	kf5-kservice-devel >= %{kf_ver}
+BuildRequires:	kf5-ktexteditor-devel >= %{kf_ver}
+BuildRequires:	kf5-ktextwidgets-devel >= %{kf_ver}
+BuildRequires:	kf5-kunitconversion-devel >= %{kf_ver}
+BuildRequires:	kf5-kwallet-devel >= %{kf_ver}
+BuildRequires:	kf5-kwayland-devel >= %{kf_ver}
+BuildRequires:	kf5-kwidgetsaddons-devel >= %{kf_ver}
+BuildRequires:	kf5-kwindowsystem-devel >= %{kf_ver}
+BuildRequires:	kf5-kxmlgui-devel >= %{kf_ver}
+BuildRequires:	kf5-networkmanager-qt-devel >= %{kf_ver}
+BuildRequires:	kf5-plasma-framework-devel >= %{kf_ver}
+BuildRequires:	kf5-prison-devel >= %{kf_ver}
+BuildRequires:	kf5-solid-devel >= %{kf_ver}
+BuildRequires:	kp5-breeze-devel >= %{kp_ver}
+BuildRequires:	kp5-kpipewire-devel >= %{kp_ver}
 BuildRequires:	kp5-kscreenlocker-devel >= 5.13.80
-BuildRequires:	kp5-kwin-devel >= %{kdeplasmaver}
-BuildRequires:	kp5-layer-shell-qt-devel >= %{kdeplasmaver}
-BuildRequires:	kp5-libkscreen-devel >= %{kdeplasmaver}
-BuildRequires:	kp5-libksysguard-devel >= %{kdeplasmaver}
+BuildRequires:	kp5-kwin-devel >= %{kp_ver}
+BuildRequires:	kp5-layer-shell-qt-devel >= %{kp_ver}
+BuildRequires:	kp5-libkscreen-devel >= %{kp_ver}
+BuildRequires:	kp5-libksysguard-devel >= %{kp_ver}
 BuildRequires:	kuserfeedback-devel
 BuildRequires:	libdrm-devel
 BuildRequires:	libicu-devel
@@ -98,12 +110,14 @@ BuildRequires:	phonon-qt5-devel >= 4.6.60
 BuildRequires:	pipewire-devel >= 0.3
 BuildRequires:	pkgconfig
 BuildRequires:	plasma-wayland-protocols-devel >= 1.6
-BuildRequires:	polkit-qt5-1-devel
+# only with GLIBC_LOCALE_GEN or UBUNTU_PACKAGEKIT; not with GLIBC_LOCALE_PREGENERATED
+#BuildRequires:	polkit-qt5-1-devel
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	wayland-devel
 BuildRequires:	wayland-protocols >= 1.31
+BuildRequires:	xcb-util-devel
 BuildRequires:	xcb-util-image-devel
 BuildRequires:	xorg-lib-libICE-devel
 BuildRequires:	xorg-lib-libSM-devel
@@ -117,7 +131,72 @@ BuildRequires:	xorg-lib-libXtst-devel
 BuildRequires:	xorg-lib-libxkbcommon-devel
 BuildRequires:	xz
 BuildRequires:	zlib-devel
+Requires:	AppStream-qt5 >= 1.0.2
+Requires:	Qt5Core >= %{qt_ver}
+Requires:	Qt5DBus >= %{qt_ver}
+Requires:	Qt5Gui >= %{qt_ver}
+Requires:	Qt5Network >= %{qt_ver}
+Requires:	Qt5PrintSupport >= %{qt_ver}
+Requires:	Qt5Qml >= %{qt_ver}
+Requires:	Qt5Quick >= %{qt_ver}
+Requires:	Qt5Sql >= %{qt_ver}
+Requires:	Qt5Svg >= %{qt_ver}
+Requires:	Qt5WaylandClient >= %{qt_ver}
+Requires:	Qt5Widgets >= %{qt_ver}
+Requires:	Qt5X11Extras >= %{qt_ver}
+Requires:	kf5-kactivities >= %{kf_ver}
+Requires:	kf5-kactivities-stats >= %{kf_ver}
+Requires:	kf5-karchive >= %{kf_ver}
+Requires:	kf5-kauth >= %{kf_ver}
+Requires:	kf5-kbookmarks >= %{kf_ver}
+Requires:	kf5-kcmutils >= %{kf_ver}
+Requires:	kf5-kcompletion >= %{kf_ver}
+Requires:	kf5-kconfig >= %{kf_ver}
+Requires:	kf5-kconfigwidgets >= %{kf_ver}
+Requires:	kf5-kcoreaddons >= %{kf_ver}
+Requires:	kf5-kcrash >= %{kf_ver}
+Requires:	kf5-kdbusaddons >= %{kf_ver}
+Requires:	kf5-kdeclarative >= %{kf_ver}
+Requires:	kf5-kglobalaccel >= %{kf_ver}
+Requires:	kf5-kguiaddons >= %{kf_ver}
+Requires:	kf5-ki18n >= %{kf_ver}
+Requires:	kf5-kiconthemes >= %{kf_ver}
+Requires:	kf5-kidletime >= %{kf_ver}
+Requires:	kf5-kio >= %{kf_ver}
+Requires:	kf5-kirigami2 >= %{kf_ver}
+Requires:	kf5-kjobwidgets >= %{kf_ver}
+Requires:	kf5-knewstuff >= %{kf_ver}
+Requires:	kf5-knotifications >= %{kf_ver}
+Requires:	kf5-knotifyconfig >= %{kf_ver}
+Requires:	kf5-kpackage >= %{kf_ver}
+Requires:	kf5-kparts >= %{kf_ver}
+Requires:	kf5-kpeople >= %{kf_ver}
+Requires:	kf5-kquickcharts >= %{kf_ver}
+Requires:	kf5-krunner >= %{kf_ver}
+Requires:	kf5-kservice >= %{kf_ver}
+Requires:	kf5-ktexteditor >= %{kf_ver}
+Requires:	kf5-ktextwidgets >= %{kf_ver}
+Requires:	kf5-kwallet >= %{kf_ver}
+Requires:	kf5-kwayland >= %{kf_ver}
+Requires:	kf5-kwidgetsaddons >= %{kf_ver}
+Requires:	kf5-kwindowsystem >= %{kf_ver}
+Requires:	kf5-kxmlgui >= %{kf_ver}
+Requires:	kf5-networkmanager-qt >= %{kf_ver}
+Requires:	kf5-plasma-framework >= %{kf_ver}
+Requires:	kf5-prison >= %{kf_ver}
+Requires:	kf5-solid >= %{kf_ver}
+Requires:	kp5-kpipewire >= %{kp_ver}
+Requires:	kp5-kscreenlocker >= 5.13.80
+Requires:	kp5-layer-shell-qt >= %{kp_ver}
+Requires:	kp5-libkscreen >= %{kp_ver}
+Requires:	kp5-libksysguard >= %{kp_ver}
 Requires:	kp5-plasma-workspace-data = %{version}-%{release}
+Requires:	libqalculate > 2.0
+# kf5/kio/thumbnail.so plugin
+Suggests:	ka5-kio-extras
+Suggests:	appmenu-gtk2-module
+Suggests:	appmenu-gtk3-module
+Suggests:	kio-fuse
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -143,11 +222,13 @@ Summary:	Header files for %{kpname} development
 Summary(pl.UTF-8):	Pliki nagłówkowe dla programistów używających %{kpname}
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	Qt5Core-devel >= %{qtver}
-Requires:	Qt5Gui-devel >= %{qtver}
-Requires:	Qt5Quick-devel >= %{qtver}
-Requires:	kf5-kitemmodels-devel >= %{kf5ver}
-Requires:	kf5-plasma-framework-devel >= %{kf5ver}
+Requires:	Qt5Core-devel >= %{qt_ver}
+Requires:	Qt5Gui-devel >= %{qt_ver}
+Requires:	Qt5Quick-devel >= %{qt_ver}
+Requires:	kf5-kconfig-devel >= %{kf_ver}
+Requires:	kf5-kcoreaddons-devel >= %{kf_ver}
+Requires:	kf5-kitemmodels-devel >= %{kf_ver}
+Requires:	kf5-plasma-framework-devel >= %{kf_ver}
 Requires:	libstdc++-devel >= 6:7
 
 %description devel
@@ -164,9 +245,12 @@ Pliki nagłówkowe dla programistów używających %{kpname}.
 %cmake -B build \
 	-G Ninja \
 	%{!?with_tests:-DBUILD_TESTING=OFF} \
+	-DGLIBC_LOCALE_GEN=OFF \
+	-DGLIBC_LOCALE_PREGENERATED=ON \
 	-DKDE_INSTALL_DOCBUNDLEDIR=%{_kdedocdir} \
 	-DKDE_INSTALL_SYSCONFDIR=%{_sysconfdir} \
-	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
+	-DUBUNTU_PACKAGEKIT=OFF
 
 %ninja_build -C build
 
