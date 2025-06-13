@@ -1,9 +1,9 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-# TODO:
-#  * dbusmenu-qt5 , Support for notification area menus via the DBusMenu protocol , <https://launchpad.net/libdbusmenu-qt>
-#
+%bcond_with	localegen	# use Debian-like /etc/locale.gen and locale-gen helper
+%bcond_with	packagekit	# use Ubuntu-like check-locale-support helper to get language support packages list
+
 %define		kf_ver		5.102.0
 %define		kp_ver		5.27.12
 %define		qt_ver		5.15.2
@@ -23,8 +23,7 @@ Patch0:		plasma-workspace-appstream1.patch
 URL:		https://kde.org/
 BuildRequires:	AppStream-qt5-devel >= 1.0.2
 BuildRequires:	NetworkManager-devel >= 1.4
-# only with UBUNTU_PACKAGEKIT
-#BuildRequires:	PackageKit-qt5-devel
+%{?with_packagekit:BuildRequires:	PackageKit-qt5-devel}
 BuildRequires:	Qt5Concurrent-devel >= %{qt_ver}
 BuildRequires:	Qt5Core-devel >= %{qt_ver}
 BuildRequires:	Qt5DBus-devel >= %{qt_ver}
@@ -110,8 +109,7 @@ BuildRequires:	phonon-qt5-devel >= 4.6.60
 BuildRequires:	pipewire-devel >= 0.3
 BuildRequires:	pkgconfig
 BuildRequires:	plasma-wayland-protocols-devel >= 1.6
-# only with GLIBC_LOCALE_GEN or UBUNTU_PACKAGEKIT; not with GLIBC_LOCALE_PREGENERATED
-#BuildRequires:	polkit-qt5-1-devel
+%{?with_localegen:BuildRequires:	polkit-qt5-1-devel}
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
@@ -245,12 +243,24 @@ Pliki nagłówkowe dla programistów używających %{kpname}.
 %cmake -B build \
 	-G Ninja \
 	%{!?with_tests:-DBUILD_TESTING=OFF} \
+%if %{with localegen} && %{without packagekit}
+	-DGLIBC_LOCALE_GEN=ON \
+%else
 	-DGLIBC_LOCALE_GEN=OFF \
+%endif
+%if %{without localegen} && %{without packagekit}
 	-DGLIBC_LOCALE_PREGENERATED=ON \
+%else
+	-DGLIBC_LOCALE_PREGENERATED=OFF \
+%endif
 	-DKDE_INSTALL_DOCBUNDLEDIR=%{_kdedocdir} \
 	-DKDE_INSTALL_SYSCONFDIR=%{_sysconfdir} \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
+%if %{with packagekit}
+	-DUBUNTU_PACKAGEKIT=ON \
+%else
 	-DUBUNTU_PACKAGEKIT=OFF
+%endif
 
 %ninja_build -C build
 
@@ -265,16 +275,13 @@ rm -rf $RPM_BUILD_ROOT
 
 install -p -D %{SOURCE1} $RPM_BUILD_ROOT/etc/pam.d/kde
 
-# unsupported locale
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/tok
-
 %find_lang %{kpname} --all-name --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -303,7 +310,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/plasma-apply-lookandfeel
 %attr(755,root,root) %{_bindir}/plasma-apply-wallpaperimage
 %attr(755,root,root) %{_bindir}/plasma-interactiveconsole
+%if %{with localegen}
 %attr(755,root,root) %{_bindir}/plasma-localegen-helper
+%endif
 %attr(755,root,root) %{_bindir}/plasma-shutdown
 %attr(755,root,root) %{_bindir}/plasma_session
 %attr(755,root,root) %{_bindir}/plasma_waitforname
@@ -556,9 +565,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/services/org.kde.plasma.Notifications.service
 %{_datadir}/dbus-1/services/org.kde.runners.baloo.service
 %{_datadir}/dbus-1/system-services/org.kde.fontinst.service
+%if %{with localegen}
 %{_datadir}/dbus-1/system-services/org.kde.localegenhelper.service
+%endif
 %{_datadir}/dbus-1/system.d/org.kde.fontinst.conf
+%if %{with localegen}
 %{_datadir}/dbus-1/system.d/org.kde.localegenhelper.conf
+%endif
 %{_datadir}/desktop-directories/kf5-development-translation.directory
 %{_datadir}/desktop-directories/kf5-development-webdevelopment.directory
 %{_datadir}/desktop-directories/kf5-development.directory
@@ -729,7 +742,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/plasma/wallpapers/org.kde.image
 %{_datadir}/plasma/wallpapers/org.kde.slideshow
 %{_datadir}/polkit-1/actions/org.kde.fontinst.policy
+%if %{with localegen}
 %{_datadir}/polkit-1/actions/org.kde.localegenhelper.policy
+%endif
 %{_datadir}/qlogging-categories5/kcm_regionandlang.categories
 %{_datadir}/qlogging-categories5/kcmusers.categories
 %{_datadir}/qlogging-categories5/klipper.categories
