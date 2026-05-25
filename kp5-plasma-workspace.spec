@@ -13,7 +13,7 @@ Summary:	KDE Plasma Workspace
 Summary(pl.UTF-8):	Środowisko KDE Plasma
 Name:		kp5-%{kpname}
 Version:	5.27.12
-Release:	2
+Release:	3
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{version}/%{kpname}-%{version}.tar.xz
