@@ -13,13 +13,14 @@ Summary:	KDE Plasma Workspace
 Summary(pl.UTF-8):	Środowisko KDE Plasma
 Name:		kp5-%{kpname}
 Version:	5.27.12
-Release:	3
+Release:	4
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{version}/%{kpname}-%{version}.tar.xz
 # Source0-md5:	ae7cb52ab11a032fb4ba29539d1d0499
 Source1:	kde.pam
 Patch0:		plasma-workspace-appstream1.patch
+Patch1:		fontconfig.patch
 URL:		https://kde.org/
 BuildRequires:	AppStream-qt5-devel >= 1.0.2
 BuildRequires:	NetworkManager-devel >= 1.4
@@ -237,7 +238,8 @@ Pliki nagłówkowe dla programistów używających %{kpname}.
 
 %prep
 %setup -q -n %{kpname}-%{version}
-%patch -P 0 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 %build
 %cmake -B build \
